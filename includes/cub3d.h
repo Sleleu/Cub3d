@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/23 19:54:51 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/23 20:28:52 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define CUB3D_H
 
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <stddef.h>
 #include <mlx.h>
 #include "struct.h"
 
@@ -28,5 +31,9 @@
 # define KEY_DOWN		65364
 # define KEY_LEFT		65361
 # define KEY_RIGHT		65363
+
+// PARSE
+
+void    ft_parse_map(t_map *map, int fd);
 
 #endif

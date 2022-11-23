@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:08:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/23 19:46:28 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/23 20:29:06 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,19 @@ void    ft_init_game(t_map *map)
     mlx_loop(map->mlx);
 }
 
-int main(void)
+int main(int ac, char **av)
 {
     t_map   map;
+    int     fd;
 
+    (void)ac;
+    (void)av;
+    fd = open(av[1], O_RDONLY);
+    if (fd <= 0)
+    {
+        write(2, "Error\nFailed to open file\n", 27);
+    }
+    ft_parse_map(&map, fd);
     ft_init_game(&map);
     return (0);
 }
