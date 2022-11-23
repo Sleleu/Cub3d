@@ -6,7 +6,7 @@
 #    By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 19:08:41 by sleleu            #+#    #+#              #
-#    Updated: 2022/11/23 20:52:29 by sleleu           ###   ########.fr        #
+#    Updated: 2022/11/23 21:23:59 by sleleu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME): ./mlx_linux/libmlx.a $(OBJ)
 	make -sC libft
-	$(CC) $(SRC) $(INC) $(OBJ) -Llibft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(SRC) $(INC) $(OBJ) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 mlx_linux/libmlx.a:
 	make -C mlx_linux

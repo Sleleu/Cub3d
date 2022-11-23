@@ -6,12 +6,9 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/23 20:28:52 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/23 21:23:41 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef CUB3D_H
-# define CUB3D_H
 
 #include <stdio.h>
 #include <unistd.h>
@@ -20,6 +17,10 @@
 #include <stddef.h>
 #include <mlx.h>
 #include "struct.h"
+#include "../libft/libft.h"
+
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # define KEY_ESC		65307
 # define KEY_W			119
@@ -34,6 +35,7 @@
 
 // PARSE
 
-void    ft_parse_map(t_map *map, int fd);
+void    ft_read_map(int fd, t_map *map);
+int     ft_parse_map(t_map *map, int fd);
 
 #endif
