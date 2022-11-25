@@ -21,3 +21,4 @@ make
 ## usefull links
 
 - https://lodev.org/cgtutor/raycasting.html
+- https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/
