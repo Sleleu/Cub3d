@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:13:33 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 17:49:49 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 20:10:44 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void    fix_size_map(t_map *map)
             if (!map->map_tab[i])
                 parse_error(map, "Error\nMalloc error\n");
         }
-        printf("%s", map->map_tab[i]);
+        printf("%s\n", map->map_tab[i]);
         i++;
     }
     printf("\nwidth map %d, height map %d, player pos x %d, player pos y %d, player direction %c\n",
@@ -202,10 +202,11 @@ void	ft_read_map(int fd, t_map *map)
         // ajouter check erreur si slash dans la line
 		if (!line)
             break ;
+        printf("%s", line);
 		map_line = ft_strjoin_cub3d(map_line, line);
 		free(line);
 	}
-	map->map_tab = ft_split(map_line, '/');
+	map->map_tab = ft_split(map_line, '/'); // corriger dans le split si une ligne est vide entre deux
     free(map_line);
     fix_size_map(map);
 }

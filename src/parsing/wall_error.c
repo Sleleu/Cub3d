@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 16:31:28 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 16:20:56 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 19:42:55 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,26 +41,26 @@ int	check_column(char **column, int y, int x, int size_y)
 	return (1);
 }
 
-int	vertical_check(t_map *map, int y, int x, int size_y)
+int	vertical_check(t_map *map, int y, int x)
 {
 	//printf("YOOOOOOO size_y = %d\n\n\n", size_y);
 	while (map->map_tab[y][x])
 	{
-		if (!check_column(map->map_tab, y, x, size_y))
+		if (!check_column(map->map_tab, y, x, map->height_map))
 			return (0);
 		x++;
 	}
 	return (1);	
 }
 
-int check_line(char *line, int x)
+int check_line(t_map *map, char *line, int x)
 {
 	while (line[x])
 	{
 		if (x == 0 && !is_valid_char(line[x], "1 "))
 			return (0);
 		if (!is_valid_char(line[x], "10NSEW "))
-			return (0);
+			parse_error(map, "Error\nInvalid character on map\n");
 		if (line[x] == ' ')
 		{
 			if (x > 0 && line[x - 1] != '1')
@@ -82,26 +82,24 @@ int	horizontal_check(t_map *map, int y, int x)
 {
 	while (map->map_tab[y])
 	{
-		if (!check_line(map->map_tab[y], x))
-			return (-1);
+		if (!check_line(map, map->map_tab[y], x))
+			return (0);
 		y++;
 	}
-	return (y);
+	return (1);
 }
 
 int	ft_wall_error(t_map *map)
 {
 	int y;
-	int size_y;
 	int x;
 	
 	y = 0;
 	x = 0;
-	size_y = horizontal_check(map, y, x);
-	if (size_y == -1)
+	if (!horizontal_check(map, y, x))
 		return (0);
 	//printf("\n\n y = %d x = %d size_y = %d\n", y, x, size_y);
-	if (!vertical_check(map, y, x, size_y))
+	if (!vertical_check(map, y, x))
 		return (0);
 	return (1);
 }

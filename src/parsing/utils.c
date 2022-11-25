@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:15:09 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 17:55:28 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 18:05:17 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_resize_line(char *str, int size)
 	char	*new_str;
 
 	i = 0;
-	new_str = malloc(sizeof(char) * size + 2);
+	new_str = malloc(sizeof(char) * size + 1);
 	if (!new_str)
 		return (NULL);
 	while (str && str[i])
@@ -55,8 +55,8 @@ char	*ft_resize_line(char *str, int size)
 		new_str[i] = ' ';
 		i++;
 	}
-	new_str[size] = '\n';
-	new_str[size + 1] = '\0';
+	//new_str[size] = '\n';
+	new_str[size] = '\0';
 	if (str)
 		free(str);
 	return (new_str);

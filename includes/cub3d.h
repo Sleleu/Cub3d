@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 17:23:10 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 19:43:13 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ char	*ft_strjoin_cub3d(char *s1, char *s2);
 // WALL_ERROR
 
 int		check_column(char **column, int y, int x, int size_y);
-int		vertical_check(t_map *map, int y, int x, int size_y);
-int		check_line(char *line, int x);
+int		vertical_check(t_map *map, int y, int x);
+int		check_line(t_map *map, char *line, int x);
 int		horizontal_check(t_map *map, int y, int x);
 int		ft_wall_error(t_map *map);
 
