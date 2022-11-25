@@ -6,15 +6,18 @@
 #    By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 19:08:41 by sleleu            #+#    #+#              #
-#    Updated: 2022/11/24 16:38:34 by sleleu           ###   ########.fr        #
+#    Updated: 2022/11/25 16:55:29 by sleleu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
 SRC =	src/main.c \
-		src/parse.c \
-		src/wall_error.c \
+		src/parsing/parse.c \
+		src/parsing/wall_error.c \
+		src/parsing/map_stat.c \
+		src/free.c \
+		src/game/init_game.c \
 
 OBJS = $(SRC:.c=.o)
 

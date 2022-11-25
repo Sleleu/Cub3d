@@ -6,49 +6,11 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:08:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/24 16:28:36 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:54:01 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	free_map_tab(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (map->map_tab[i])
-	{
-		free(map->map_tab[i]);
-		i++;
-	}
-	free(map->map_tab);
-}
-
-int close_game(t_map *map)
-{
-    free_map_tab(map);
-	mlx_destroy_window(map->mlx, map->mlx_win);
-	mlx_destroy_display(map->mlx);
-    free(map->mlx);
-    exit (0);
-}
-
-int key_hook(int keycode, t_map *map)
-{
-	if (keycode == KEY_ESC)
-		close_game(map);
-    return (0);
-}
-
-void    ft_init_game(t_map *map)
-{
-    map->mlx = mlx_init();
-    map->mlx_win = mlx_new_window(map->mlx, 800, 600, "Cub3D");
-    mlx_hook(map->mlx_win, 2, 1L << 0, key_hook, map);
-    mlx_hook(map->mlx_win, 17, 1L << 0, close_game, map);
-    mlx_loop(map->mlx);
-}
 
 int	ft_test_file(char *argv)
 {
@@ -65,12 +27,34 @@ int	ft_test_file(char *argv)
 	return (1);
 }
 
+void    bzero_struct(t_map *map)
+{
+    int i;
+
+    i = 0;
+    map->map_tab = NULL;
+    map->map_data = NULL;
+    map->width_map = 0;
+    map->height_map = 0;
+    map->p_pos_x = 0;
+    map->p_pos_y = 0;
+    map->p_direction = '\0';
+    while (i < 3)
+    {
+        map->rgb_floor[i] = 0;
+        map->rgb_sky[i] = 0;
+        i++;
+    }
+}
+
 int main(int ac, char **av)
 {
     t_map   map;
     int     fd;
 
-    (void)ac;
+    bzero_struct(&map);
+    if (ac != 2)
+        parse_error(&map, "Error\nOne argument required\n");
 	if (!ft_test_file(av[1]))
 		return (1);
     fd = open(av[1], O_RDONLY);

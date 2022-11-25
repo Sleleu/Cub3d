@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:13:33 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 15:41:44 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:39:43 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,20 @@ int	ft_wall_error(t_map *map)
 }
 */
 
+int	is_valid_char(char c, char *valid_char)
+{
+	int i;
+
+	i = 0;
+	while (valid_char[i])
+	{
+		if (c == valid_char[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_strlen_cub3d(char *str)
 {
 	int	i;
@@ -144,7 +158,7 @@ char	*ft_strjoin_cub3d(char *s1, char *s2)
 
 int error_map(t_map *map)
 {
-	if (!ft_wall_error(map))
+    if (!ft_wall_error(map))
 	{
 		printf("Error\nMap not closed\n");
 		return (1); // faute
@@ -155,6 +169,67 @@ int error_map(t_map *map)
 	// if (!ft_form_error(map)
 	// 	|| !ft_entity_error(map))
 	// 	return (0);
+}
+
+void    assign_player_pos(t_map *map, char direction, int i, int j)
+{
+    map->p_pos_y = i;
+    map->p_pos_x = j;
+    map->p_direction = direction;
+}
+
+void    set_size_data(t_map *map, char **array, int i, int j)
+{
+    int tmp;
+    int count_player;
+
+    tmp = 0;
+    count_player = 0;
+    while (array[i])
+    {
+        j = 0;
+        while (array[i][j])
+        {
+            if (is_valid_char(array[i][j], "NSEW"))
+            {
+                assign_player_pos(map, array[i][j], i, j);
+                count_player++;
+            }
+           j++;
+        }
+        if (j > tmp)
+            tmp = j;
+        i++;
+    }
+    if (count_player != 1)
+        return ; // comme ca si pas de data sur largeur/hauteur = plus de 1 perso sur la map donc invalide
+    map->width_map = tmp;
+    map->height_map = i;
+}
+
+void    parse_error(t_map *map, char *message)
+{
+    write(2, message, ft_strlen(message));
+    if (map->map_tab)
+        free_map_tab(map);
+    if (map->map_data)
+        free_map_data(map);
+    exit (EXIT_FAILURE);
+}
+
+void    fix_size_map(t_map *map)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    set_size_data(map, map->map_tab, i, j);
+    // join des espaces si lignes plus petites
+    if (map->height_map == 0 && map->width_map == 0)
+        parse_error(map, "Error\nOnly one player is required on the map\n");
+    printf("\nwidth map %d, height map %d, player pos x %d, player pos y %d, player direction %c\n",
+    map->width_map, map->height_map, map->p_pos_x, map->p_pos_y, map->p_direction);
 }
 
 void	ft_read_map(int fd, t_map *map)
@@ -170,17 +245,19 @@ void	ft_read_map(int fd, t_map *map)
         // ajouter check erreur si slash dans la line
         printf("%s", line);
 		if (!line)
-			break ;
+            break ;
 		map_line = ft_strjoin_cub3d(map_line, line);
 		free(line);
 	}
 	map->map_tab = ft_split(map_line, '/');
-	free(map_line);
+    free(map_line);
+    fix_size_map(map);
 }
 
 int ft_parse_map(t_map *map, int fd)
 {
     ft_read_map(fd, map);
+  //  get_map_stat(map);
     if (error_map(map))
         return (0);
     close(fd);

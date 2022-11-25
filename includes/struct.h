@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 15:45:15 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:13:39 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ typedef struct  s_map
 
     // map data
     char    **map_tab;
+    char    **map_data;
     int     width_map;
     int     height_map;
 
     // player data
-    int     pos_x;
-    int     pos_y;
-    char    orientation;
+    int     p_pos_x;
+    int     p_pos_y;
+    char    p_direction;
 
     // color data
     int     rgb_floor[3];
