@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:13:33 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/23 22:25:31 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 15:41:44 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 //espaces de fin a traiter
 
+/*
 int ft_check_space(char *str, int j)
 {
     if (j > 0 && str[j - 1] != '1')
@@ -100,6 +101,7 @@ int	ft_wall_error(t_map *map)
         return (0);
 	return (1);
 }
+*/
 
 int	ft_strlen_cub3d(char *str)
 {
@@ -145,10 +147,11 @@ int error_map(t_map *map)
 	if (!ft_wall_error(map))
 	{
 		printf("Error\nMap not closed\n");
-		return (0);
+		return (1); // faute
 	}
     else
         printf("Good MAP\n");
+    return (1);
 	// if (!ft_form_error(map)
 	// 	|| !ft_entity_error(map))
 	// 	return (0);
@@ -178,7 +181,6 @@ void	ft_read_map(int fd, t_map *map)
 int ft_parse_map(t_map *map, int fd)
 {
     ft_read_map(fd, map);
-    
     if (error_map(map))
         return (0);
     close(fd);

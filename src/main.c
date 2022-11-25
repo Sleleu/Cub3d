@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:08:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/23 21:12:41 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/24 16:28:36 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_map_tab(t_map *map)
 
 int close_game(t_map *map)
 {
-    //free_map_tab(map);
+    free_map_tab(map);
 	mlx_destroy_window(map->mlx, map->mlx_win);
 	mlx_destroy_display(map->mlx);
     free(map->mlx);
