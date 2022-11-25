@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:13:33 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 16:39:43 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 17:49:49 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,59 +103,6 @@ int	ft_wall_error(t_map *map)
 }
 */
 
-int	is_valid_char(char c, char *valid_char)
-{
-	int i;
-
-	i = 0;
-	while (valid_char[i])
-	{
-		if (c == valid_char[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	ft_strlen_cub3d(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str && str[i] && str[i] != '\n')
-		i++;
-	return (i);
-}
-
-char	*ft_strjoin_cub3d(char *s1, char *s2)
-{
-	int		size;
-	int		i;
-	char	*tab;
-
-	i = 0;
-	size = (ft_strlen_cub3d(s1) + ft_strlen_cub3d(s2));
-	tab = malloc(sizeof(char) * size + 2);
-	if (tab == NULL)
-		return (NULL);
-	while (s1 && s1[i])
-	{
-		tab[i] = s1[i];
-		i++;
-	}
-	while (*s2)
-	{
-		tab[i] = *s2;
-		i++;
-		s2++;
-	}
-	tab[size] = '/';
-	tab[size + 1] = '\0';
-	if (s1)
-		free(s1);
-	return (tab);
-}
-
 int error_map(t_map *map)
 {
     if (!ft_wall_error(map))
@@ -225,9 +172,19 @@ void    fix_size_map(t_map *map)
     i = 0;
     j = 0;
     set_size_data(map, map->map_tab, i, j);
-    // join des espaces si lignes plus petites
     if (map->height_map == 0 && map->width_map == 0)
         parse_error(map, "Error\nOnly one player is required on the map\n");
+    while (map->map_tab[i])
+    {
+        if (ft_strlen_cub3d(map->map_tab[i]) <= map->width_map)
+        {
+            map->map_tab[i] = ft_resize_line(map->map_tab[i], map->width_map);
+            if (!map->map_tab[i])
+                parse_error(map, "Error\nMalloc error\n");
+        }
+        printf("%s", map->map_tab[i]);
+        i++;
+    }
     printf("\nwidth map %d, height map %d, player pos x %d, player pos y %d, player direction %c\n",
     map->width_map, map->height_map, map->p_pos_x, map->p_pos_y, map->p_direction);
 }
@@ -243,7 +200,6 @@ void	ft_read_map(int fd, t_map *map)
 	{
 		line = get_next_line(fd);
         // ajouter check erreur si slash dans la line
-        printf("%s", line);
 		if (!line)
             break ;
 		map_line = ft_strjoin_cub3d(map_line, line);

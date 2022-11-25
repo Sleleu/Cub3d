@@ -6,7 +6,7 @@
 #    By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 19:08:41 by sleleu            #+#    #+#              #
-#    Updated: 2022/11/25 16:55:29 by sleleu           ###   ########.fr        #
+#    Updated: 2022/11/25 17:16:59 by sleleu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC =	src/main.c \
 		src/parsing/parse.c \
 		src/parsing/wall_error.c \
 		src/parsing/map_stat.c \
+		src/parsing/utils.c \
 		src/free.c \
 		src/game/init_game.c \
 

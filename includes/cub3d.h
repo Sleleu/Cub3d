@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 16:53:14 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 17:23:10 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,15 @@ int		close_game(t_map *map);
 // PARSE
 
 void    parse_error(t_map *map, char *message);
-int		is_valid_char(char c, char *valid_char);
 void    ft_read_map(int fd, t_map *map);
 int     ft_parse_map(t_map *map, int fd);
+
+// UTILS
+
+int		is_valid_char(char c, char *valid_char);
+int		ft_strlen_cub3d(char *str);
+char	*ft_resize_line(char *str, int size);
+char	*ft_strjoin_cub3d(char *s1, char *s2);
 
 // WALL_ERROR
 
