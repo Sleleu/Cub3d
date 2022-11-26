@@ -17,3 +17,8 @@ In the ./Cub3d folder :
 git clone https://github.com/42Paris/minilibx-linux.git mlx_linux
 make
 ```
+
+## usefull links
+
+- https://lodev.org/cgtutor/raycasting.html
+- https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/
