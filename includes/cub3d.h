@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 01:36:30 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 17:03:19 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int		ft_wall_error(t_map *map);
 
 void    assign_player_pos(t_map *map, char direction, int i, int j);
 void    set_size_data(t_map *map, char **array, int i, int j);
+int		get_map_stat(t_map *map, char *line);
 
 /* ********************************************************** */
 /*                           GAME                             */
