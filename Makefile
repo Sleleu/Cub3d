@@ -6,7 +6,7 @@
 #    By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 19:08:41 by sleleu            #+#    #+#              #
-#    Updated: 2022/11/25 17:16:59 by sleleu           ###   ########.fr        #
+#    Updated: 2022/11/26 00:16:38 by sleleu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC =	src/main.c \
 		src/free.c \
 		src/game/init_game.c \
 
-OBJS = $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 CC = gcc
 
@@ -29,15 +29,13 @@ CC = gcc
 
 all: $(NAME)
 
-$(NAME): ./mlx_linux/libmlx.a $(OBJ)
-	make -sC libft
-	$(CC) $(SRC) $(INC) $(OBJ) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-
-mlx_linux/libmlx.a:
+$(NAME): $(OBJ)
 	make -C mlx_linux
+	make -C libft
+	$(CC) $(OBJ) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:
-	rm -rfv $(OBJS)
+	rm -rfv $(OBJ)
 	make clean -C mlx_linux
 	make clean -C libft
 

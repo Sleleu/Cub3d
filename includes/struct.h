@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 16:13:39 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/25 21:41:38 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ typedef struct  s_map
     void    *south_wall;
     void    *east_wall;
     void    *west_wall;
+
+    // parsing variables
+    char    *line;
+    char    *map_line;
 
 }   t_map;
 

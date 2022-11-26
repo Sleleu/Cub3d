@@ -37,7 +37,7 @@ SRC = ft_atoi.c\
       get_next_line.c\
       get_next_line_utils.c\
       ft_lstadd_front.c\
-	ft_lstadd_back.c\
+	  ft_lstadd_back.c\
       ft_lstclear.c\
       ft_lstdelone.c\
       ft_lstiter.c\
@@ -45,6 +45,11 @@ SRC = ft_atoi.c\
       ft_lstnew.c\
       ft_lstmap.c\
       ft_lstsize.c\
+	  ft_format.c\
+	  ft_printf.c\
+	  ft_putchar_printf.c\
+	  ft_putnbr_printf.c\
+	  ft_putstr_printf.c\
 
 OBJ = $(SRC:.c=.o)
 

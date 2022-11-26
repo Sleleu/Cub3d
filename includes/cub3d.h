@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 19:43:13 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 00:11:17 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,39 @@
 # define KEY_RIGHT		65363
 
 
-// MAIN
+/* ********************************************************** */
+/*                           MAIN                             */
+/* ********************************************************** */
+
+/* MAIN */
 
 void    bzero_struct(t_map *map);
 int		ft_test_file(char *argv);
 
-// FREE_FUNCTIONS
+/* FREE_FUNCTIONS */
 
 void	free_map_tab(t_map *map);
 void	free_map_data(t_map *map);
 int		close_game(t_map *map);
 
-// PARSE
+/* ********************************************************** */
+/*                           PARSING                          */
+/* ********************************************************** */
+
+/* PARSE */
 
 void    parse_error(t_map *map, char *message);
 void    ft_read_map(int fd, t_map *map);
 int     ft_parse_map(t_map *map, int fd);
 
-// UTILS
+/* UTILS */
 
 int		is_valid_char(char c, char *valid_char);
 int		ft_strlen_cub3d(char *str);
 char	*ft_resize_line(char *str, int size);
 char	*ft_strjoin_cub3d(char *s1, char *s2);
 
-// WALL_ERROR
+/* WALL_ERROR */
 
 int		check_column(char **column, int y, int x, int size_y);
 int		vertical_check(t_map *map, int y, int x);
@@ -66,7 +74,16 @@ int		check_line(t_map *map, char *line, int x);
 int		horizontal_check(t_map *map, int y, int x);
 int		ft_wall_error(t_map *map);
 
-// INIT_GAME
+/* MAP_STAT */
+
+void    assign_player_pos(t_map *map, char direction, int i, int j);
+void    set_size_data(t_map *map, char **array, int i, int j);
+
+/* ********************************************************** */
+/*                           GAME                             */
+/* ********************************************************** */
+
+/* INIT_GAME */
 
 void    ft_init_game(t_map *map);
 

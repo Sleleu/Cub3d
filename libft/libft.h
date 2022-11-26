@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:53:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/23 20:36:33 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 00:44:51 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "ft_printf.h"
 
 typedef struct s_list
 {

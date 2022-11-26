@@ -6,102 +6,11 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:13:33 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 20:10:44 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 00:36:22 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-//espaces de fin a traiter
-
-/*
-int ft_check_space(char *str, int j)
-{
-    if (j > 0 && str[j - 1] != '1')
-        return (-1);
-    while (str[j] && str[j] == 32)
-        j++;
-    // Si espace a la fin ca crash 
-    if (str[j] && str[j] != '1')
-        return (-2);
-    return (j);
-}
-
-int ft_check_border(char *str)
-{
-    int j;
-
-    printf("str = %s\n", str);
-    j = 0;
-	while (str[j])
-	{
-        if (str[j] == 32)
-        {
-            j = ft_check_space(str, j);
-            printf("check space = %d\n", j);
-            if (j < 0)
-                return (-1);
-        }
-		if (str[j] != '1')
-	    	return (-1);
-        // Possibilite de segfault
-        j++;
-	}
-    return (1);
-}
-
-int ft_check_line(char *str)
-{
-    int i;
-
-    i = 0;
-    printf("str = %s\n", str);
-    if (str[i] == 32)
-    {
-        i = ft_check_space(str, i);
-        if (i == -1)
-            return (-1);
-    }
-    if (str[i] != '1')
-        return (-1);
-    while (str[i])
-    {
-        if (str[i] == 32)
-        {
-            i = ft_check_space(str, i);
-            printf("checkspace = %d, i = %d, str[%d] = %c", i, i, i, str[i]);
-            if (i == -1)
-                return (-1);
-        }
-        i++;
-    }
-    if (str[i - 1] != '1')
-        return (-1);
-    return (1);
-}
-
-int	ft_wall_error(t_map *map)
-{
-	int	i;
-
-	i = 0;
-    printf("ONE\n");
-    if (ft_check_border(map->map_tab[i]) == -1)
-        return (0);
-	i++;
-    printf("TWO\n");
-	while (map->map_tab[i])
-	{
-        if (ft_check_line(map->map_tab[i]) == -1)
-            return (0);
-        i++;
-	}
-    printf("THREE\n");
-    if (ft_check_border(map->map_tab[i - 1]) == -1)
-        return (0);
-	return (1);
-}
-*/
 
 int error_map(t_map *map)
 {
@@ -118,51 +27,31 @@ int error_map(t_map *map)
 	// 	return (0);
 }
 
-void    assign_player_pos(t_map *map, char direction, int i, int j)
-{
-    map->p_pos_y = i;
-    map->p_pos_x = j;
-    map->p_direction = direction;
-}
-
-void    set_size_data(t_map *map, char **array, int i, int j)
-{
-    int tmp;
-    int count_player;
-
-    tmp = 0;
-    count_player = 0;
-    while (array[i])
-    {
-        j = 0;
-        while (array[i][j])
-        {
-            if (is_valid_char(array[i][j], "NSEW"))
-            {
-                assign_player_pos(map, array[i][j], i, j);
-                count_player++;
-            }
-           j++;
-        }
-        if (j > tmp)
-            tmp = j;
-        i++;
-    }
-    if (count_player != 1)
-        return ; // comme ca si pas de data sur largeur/hauteur = plus de 1 perso sur la map donc invalide
-    map->width_map = tmp;
-    map->height_map = i;
-}
-
 void    parse_error(t_map *map, char *message)
 {
-    write(2, message, ft_strlen(message));
+    //write(2, message, ft_strlen(message));
     if (map->map_tab)
         free_map_tab(map);
     if (map->map_data)
         free_map_data(map);
-    exit (EXIT_FAILURE);
+    if (map->line)
+        free(map->line);
+    if (map->map_line)
+        free(map->map_line);
+    exit (write(2, message, ft_strlen(message)));
 }
+
+/*
+    FIX_SIZE_MAP
+
+    It use set_size_data() to set the heigh and width of the map.
+    If they're not defined, it means that more or less than one
+    player is placed on the map.
+    
+    Based on the width, this function resize each line to have
+    the same width than the longer line and form a rectangle,
+    to make the vertical parsing easier.
+*/
 
 void    fix_size_map(t_map *map)
 {
@@ -189,25 +78,35 @@ void    fix_size_map(t_map *map)
     map->width_map, map->height_map, map->p_pos_x, map->p_pos_y, map->p_direction);
 }
 
+/*
+        FT_READ_MAP
+    
+    read each line in fd, and join them in map_line. 
+    At the end, map_line is split with the '/' separator added
+    by ft_strjoin_cub3d, and stocked in map_tab.
+    if a line is empty, a space is added to count the line in
+    ft_split.
+    if a '/' is added before the parsing, ft_parse_error is called
+    to free and exit the program properly.
+*/
+
 void	ft_read_map(int fd, t_map *map)
 {
-	char	*line;
-	char	*map_line;
-
-	line = NULL;
-	map_line = NULL;
 	while (42)
 	{
-		line = get_next_line(fd);
-        // ajouter check erreur si slash dans la line
-		if (!line)
+		map->line = get_next_line(fd);
+		if (!map->line)
             break ;
-        printf("%s", line);
-		map_line = ft_strjoin_cub3d(map_line, line);
-		free(line);
+        if (map->line[0] == '\n')
+            map->line[0] = ' ';
+        if (ft_strchr(map->line, '/'))
+            parse_error(map, "Error\nInvalid character in map\n");
+		map->map_line = ft_strjoin_cub3d(map->map_line, map->line);
+		free(map->line);
 	}
-	map->map_tab = ft_split(map_line, '/'); // corriger dans le split si une ligne est vide entre deux
-    free(map_line);
+	map->map_tab = ft_split(map->map_line, '/');
+    free(map->map_line);
+    map->map_line = NULL;
     fix_size_map(map);
 }
 

@@ -6,11 +6,11 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:12:10 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/06 16:48:11 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 00:30:22 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {

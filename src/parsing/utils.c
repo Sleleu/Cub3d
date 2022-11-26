@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:15:09 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 18:05:17 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 00:10:02 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,18 @@ char	*ft_resize_line(char *str, int size)
 		new_str[i] = ' ';
 		i++;
 	}
-	//new_str[size] = '\n';
 	new_str[size] = '\0';
 	if (str)
 		free(str);
 	return (new_str);
 }
+
+/*
+	FT_STRJOIN_CUB3D
+	
+	A simple strjoin but this one add a '/' separator at the
+	end of the string, and don't count the '\n' for the size.
+*/
 
 char	*ft_strjoin_cub3d(char *s1, char *s2)
 {

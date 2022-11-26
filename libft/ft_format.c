@@ -6,11 +6,11 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 15:27:33 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/06 16:48:39 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 00:32:16 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "ft_printf.h"
 
 static int	ft_putuint(unsigned int nb)
 {
@@ -60,7 +60,7 @@ static int	ft_putaddr(unsigned long nb)
 	index = "0123456789abcdef";
 	if (nb == 0)
 	{
-		len = ft_putstr_printf(PTR_NULL, 1);
+		len = ft_putstr_printf("(nil)", 1);
 		return (len);
 	}
 	if (nb > 15)
