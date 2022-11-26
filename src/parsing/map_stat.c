@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:48:55 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 19:57:03 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 20:24:46 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	get_map_stat(t_map *map, char *line)
 		else if (!ft_strncmp(line, "C ", 2))
 			get_rgb(map, map->rgb_sky, ft_split(line, ' '));
 		else
-			parse_error(map, "Error\nIncorrect data on texture/color");
+			parse_error(map, "Error\nIncorrect data on texture/color\n");
 		i++;
 		return (0);
 	}

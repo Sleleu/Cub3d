@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 19:53:52 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 21:19:20 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <fcntl.h>
 #include <stddef.h>
 #include <mlx.h>
+#include <math.h>
 #include "struct.h"
 #include "../libft/libft.h"
 
@@ -45,6 +46,7 @@ int		ft_test_file(char *argv);
 
 /* FREE_FUNCTIONS */
 
+void	destroy_image(t_map *map);
 void	free_rgb_texture(t_map *map);
 void	free_double_array(char **str);
 int		close_game(t_map *map);
@@ -93,6 +95,8 @@ void	get_rgb(t_map *map, int *rgb, char **split_line);
 
 /* INIT_GAME */
 
-void    ft_init_game(t_map *map);
+void	game_error(t_map *map, char *message);
+void	ft_init_img(t_map *map);
+int		ft_init_game(t_map *map);
 
 #endif

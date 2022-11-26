@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 21:41:38 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 20:40:51 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct  s_map
     void    *mlx;
     void    *mlx_win;
 
-    
+    // path of textures
     char    *north;
     char    *south;
     char    *east;
@@ -49,6 +49,12 @@ typedef struct  s_map
     // parsing variables
     char    *line;
     char    *map_line;
+
+	// images
+	void	*img_no;
+	void	*img_so;
+	void	*img_ea;
+	void	*img_we;
 
 }   t_map;
 

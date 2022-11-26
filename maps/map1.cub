@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ../img/north.xpm
+SO ../img/south.xpm
+WE ../img/west.xpm
+EA ../img/east.xpm
 
 F 220,255,150 
 C 225,200,100   
