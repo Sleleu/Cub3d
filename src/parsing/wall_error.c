@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 16:31:28 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 19:58:10 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 22:29:39 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,10 @@ int	ft_wall_error(t_map *map)
 
 	y = 0;
 	x = 0;
-	if (!horizontal_check(map, y, x))
+	if (!horizontal_check(map, y, x) || !vertical_check(map, y, x))
+	{
+		free_rgb_texture(map);
 		return (0);
-	if (!vertical_check(map, y, x))
-		return (0);
+	}
 	return (1);
 }

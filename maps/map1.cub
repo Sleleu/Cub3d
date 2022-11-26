@@ -1,7 +1,7 @@
-NO ../img/north.xpm
-SO ../img/south.xpm
-WE ../img/west.xpm
-EA ../img/east.xpm
+NO img/north.xpm
+SO img/south.xpm
+WE img/west.xpm
+EA img/east.xpm
 
 F 220,255,150 
 C 225,200,100   
@@ -21,7 +21,7 @@ C 225,200,100
 110000011101010111110111100111
 11110111 1110101 101111010001
 11111111 1111111 111111111111
- 
+
  
  
         11111

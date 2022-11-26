@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 21:19:11 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 21:51:31 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	game_error(t_map *map, char *message)
 	ft_printf(message);
 	free_rgb_texture(map);
 	free_double_array(map->map_tab);
-	//destroy_image(map);
+	destroy_image(map);
 	if (map->mlx_win)
 		mlx_destroy_window(map->mlx, map->mlx_win);
 	if (map->mlx)
@@ -37,7 +37,7 @@ void	ft_init_img(t_map *map)
 {
 	int	w;
 	int	h;
-	
+
 	if (!(map->img_no = mlx_xpm_file_to_image(map->mlx, map->north, &w, &h)))
 		game_error(map, "Error\nPath to the north texture is incorrect\n");
 	if (!(map->img_so = mlx_xpm_file_to_image(map->mlx, map->south, &w, &h)))
