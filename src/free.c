@@ -6,11 +6,23 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:34:22 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 01:37:53 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 19:35:57 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	free_rgb_texture(t_map *map)
+{
+	if (map->north)
+		free(map->north);
+	if (map->south)
+		free(map->south);
+	if (map->east)
+		free(map->east);
+	if (map->west)
+		free(map->west);
+}
 
 void	free_double_array(char **str)
 {
@@ -24,32 +36,6 @@ void	free_double_array(char **str)
 	}
 	free(str);
 }
-
-// void	free_map_tab(t_map *map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (map->map_tab[i])
-// 	{
-// 		free(map->map_tab[i]);
-// 		i++;
-// 	}
-// 	free(map->map_tab);
-// }
-
-// void	free_map_data(t_map *map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (map->map_data[i])
-// 	{
-// 		free(map->map_data[i]);
-// 		i++;
-// 	}
-// 	free(map->map_data);
-// }	
 
 int close_game(t_map *map)
 {

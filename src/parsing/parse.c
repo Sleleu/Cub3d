@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:13:33 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 01:52:26 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 19:34:38 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void    parse_error(t_map *map, char *message)
     if (map->line)
         free(map->line);
     if (map->map_line)
-        free(map->map_line);
+		free(map->map_line);
+	free_rgb_texture(map);
     exit (EXIT_FAILURE);
 }
 
@@ -118,8 +119,10 @@ int ft_parse_map(t_map *map, int fd)
     ft_read_map(fd, map);
   //  get_map_stat(map);
     if (error_map(map))
+	{
+		parse_error(map, "TEST FREE HERE\n");
         return (0);
+	}
     close(fd);
-
     return (1);
 }

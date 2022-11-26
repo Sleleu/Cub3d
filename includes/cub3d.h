@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 17:03:19 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 19:40:27 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		ft_test_file(char *argv);
 
 // void	free_map_tab(t_map *map);
 // void	free_map_data(t_map *map);
+void	free_rgb_texture(t_map *map);
 void	free_double_array(char **str);
 int		close_game(t_map *map);
 
@@ -80,6 +81,13 @@ int		ft_wall_error(t_map *map);
 void    assign_player_pos(t_map *map, char direction, int i, int j);
 void    set_size_data(t_map *map, char **array, int i, int j);
 int		get_map_stat(t_map *map, char *line);
+
+/* PARSE_RGB_TEXTURE */
+
+void	get_texture_path(t_map *map, char **path, char **split_line);
+int		parse_rgb_line(char *line);
+int		check_rgb(int *rgb, char *line);
+void	get_rgb(t_map *map, int *rgb, char **split_line);
 
 /* ********************************************************** */
 /*                           GAME                             */

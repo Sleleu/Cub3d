@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:48:55 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 18:11:01 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 18:16:56 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,106 +63,6 @@ void    set_size_data(t_map *map, char **array, int i, int j)
         return ;
     map->width_map = tmp;
     map->height_map = i;
-}
-
-void	get_texture_path(t_map *map, char **path, char **split_line)
-{
-	int i;
-	
-	i = 0;
-	while (split_line[i])
-		i++;
-	if (i == 3 && split_line[2][0] == '\n')
-		free(split_line[i--]);
-	if (i != 2)
-	{
-		free(split_line);
-		parse_error(map, "Error\nTexture line is incorrect\n");
-	}
-	*path = ft_strjoin_cub3d(*path, split_line[1]);
-	free(split_line);
-}
-
-int	ft_strlen_rgb(char *line)
-{
-	int i;
-
-	i = 0;
-	while (line && line[i] && line[i] != 32 && line[i] != '\n')
-		i++;
-	return (i);
-}
-
-int	parse_rgb_line(char *line)
-{
-	int i;
-	int comma;
-
-	i = 0;
-	comma = 0;
-	if (!ft_isdigit(line[0]) || !ft_isdigit(line[ft_strlen_cub3d(line) - 1])
-		|| ft_strlen_rgb(line) > 11)
-		return (0);
-	while (line[i + 1])
-	{
-		if (line[i] == ',')
-			comma++;
-		else if ((!ft_isdigit(line[i])) && line[i] != ',')
-			return (0);
-		i++;
-	}
-	if (comma != 2)
-		return (0);
-	return (1);
-}
-
-int	check_rgb(t_map *map, int *rgb, char *line)
-{
-	int i;
-	int	j;
-	
-	j = 1;
-	i = 0;
-	if (!parse_rgb_line(line))
-		parse_error(map, "Error\nBad character in rgb line\n");
-	while (line[i])
-	{
-		if (i == 0)
-			rgb[0] = ft_atoi(line);
-		else if (j == 1)
-			rgb[1] = ft_atoi(line + i + 1);
-		else if (j == 2)
-			rgb[2] = ft_atoi(line + i + 1);
-		if (line[i] == ',')
-			j++;
-		i++;
-	}
-	i = 0;
-	while (i < 3)
-	{
-		printf("rgb %d %d\n", i, rgb[i]);
-		if (rgb[i] < 0 || rgb[i] > 255)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	get_rgb(t_map *map, int *rgb, char **split_line)
-{
-	int i;
-	
-	i = 0;
-	while (split_line[i])
-		i++;
-	if (i == 3 && split_line[2][0] == '\n')
-		free(split_line[i--]);
-	if ((i != 2) || !check_rgb(map, rgb, split_line[1]))
-	{
-		free(split_line);
-		parse_error(map, "Error\nRGB line is incorrect\n");
-	}
-	free(split_line);
 }
 
 void	check_stat(t_map *map)
