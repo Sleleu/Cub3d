@@ -6,11 +6,19 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 18:15:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 19:40:21 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 20:20:23 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+/*
+	GET_TEXTURE_PATH
+
+	Check the number of lines, and stock the path of the texture image in
+	the structure with ft_strjoin_cub3d(), to remove the potential '\n' 
+	at the end of the line.
+*/
 
 void	get_texture_path(t_map *map, char **path, char **split_line)
 {
@@ -29,6 +37,13 @@ void	get_texture_path(t_map *map, char **path, char **split_line)
 	*path = ft_strjoin_cub3d(*path, split_line[1]);
 	free_double_array(split_line);
 }
+
+/*
+	PARSE_RGB_LINE
+
+	The rgb code is correct if there is 2 comma, only digits,
+	and a line < 11.
+*/
 
 int	parse_rgb_line(char *line)
 {
@@ -52,6 +67,13 @@ int	parse_rgb_line(char *line)
 		return (0);
 	return (1);
 }
+
+/*
+	CHECK_RGB
+
+	Assign the rgb code in the rgb array stocked in the structure, and
+	check if the value is between 0 and 255.
+*/
 
 int	check_rgb(int *rgb, char *line)
 {
@@ -80,10 +102,19 @@ int	check_rgb(int *rgb, char *line)
 	return (1);
 }
 
+/*
+	GET_RGB
+
+	This function check the number of lines split, and call check_rgb().
+	If i = 3 and the 3rd line is only '\n', it means that spaces have been
+	added after the rgb code.
+	If check_rgb() return an error, there is an error in the rgb code.
+*/
+
 void	get_rgb(t_map *map, int *rgb, char **split_line)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (split_line[i])
 		i++;

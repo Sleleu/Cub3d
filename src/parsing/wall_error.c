@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 16:31:28 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 01:20:28 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 19:58:10 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ int	vertical_check(t_map *map, int y, int x)
 			return (0);
 		x++;
 	}
-	return (1);	
+	return (1);
 }
 
-int check_line(t_map *map, char *line, int x)
+int	check_line(t_map *map, char *line, int x)
 {
 	while (line[x])
 	{
@@ -63,7 +63,7 @@ int check_line(t_map *map, char *line, int x)
 			while (line[x] && line[x] == ' ')
 				x++;
 			if (line[x] && line[x] != '1')
-			 	return (0);
+				return (0);
 		}
 		if (line[x])
 			x++;
@@ -86,9 +86,9 @@ int	horizontal_check(t_map *map, int y, int x)
 
 int	ft_wall_error(t_map *map)
 {
-	int y;
-	int x;
-	
+	int	y;
+	int	x;
+
 	y = 0;
 	x = 0;
 	if (!horizontal_check(map, y, x))

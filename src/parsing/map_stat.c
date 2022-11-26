@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:48:55 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 18:16:56 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 19:57:03 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 	the position and direction of the player is stocked in the structure.
 */
 
-void    assign_player_pos(t_map *map, char direction, int i, int j)
+void	assign_player_pos(t_map *map, char direction, int i, int j)
 {
-    map->p_pos_y = i;
-    map->p_pos_x = j;
-    map->p_direction = direction;
+	map->p_pos_y = i;
+	map->p_pos_x = j;
+	map->p_direction = direction;
 }
 
 /*
@@ -36,39 +36,39 @@ void    assign_player_pos(t_map *map, char direction, int i, int j)
     don't set the height and width of the map.
 */
 
-void    set_size_data(t_map *map, char **array, int i, int j)
+void	set_size_data(t_map *map, char **array, int i, int j)
 {
-    int tmp;
-    int count_player;
+	int	tmp;
+	int	count_player;
 
-    tmp = 0;
-    count_player = 0;
-    while (array[i])
-    {
-        j = 0;
-        while (array[i][j])
-        {
-            if (is_valid_char(array[i][j], "NSEW"))
-            {
-                assign_player_pos(map, array[i][j], i, j);
-                count_player++;
-            }
-           j++;
-        }
-        if (j > tmp)
-            tmp = j;
-        i++;
-    }
-    if (count_player != 1)
-        return ;
-    map->width_map = tmp;
-    map->height_map = i;
+	tmp = 0;
+	count_player = 0;
+	while (array[i])
+	{
+		j = 0;
+		while (array[i][j])
+		{
+			if (is_valid_char(array[i][j], "NSEW"))
+			{
+				assign_player_pos(map, array[i][j], i, j);
+				count_player++;
+			}
+			j++;
+		}
+		if (j > tmp)
+			tmp = j;
+		i++;
+	}
+	if (count_player != 1)
+		return ;
+	map->width_map = tmp;
+	map->height_map = i;
 }
 
 void	check_stat(t_map *map)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (!map->north || !map->south || !map->east || !map->west)
 		parse_error(map, "Error\nMissing textures\n");
@@ -82,7 +82,7 @@ void	check_stat(t_map *map)
 
 int	get_map_stat(t_map *map, char *line)
 {
-	static int i = 0;
+	static int	i = 0;
 
 	while (i < 6)
 	{
@@ -105,10 +105,6 @@ int	get_map_stat(t_map *map, char *line)
 		i++;
 		return (0);
 	}
-	printf("nord %s\n sud %s\n est %s\n ouest %s\n",
-	map->north, map->south, map->east, map->west);
-	for (int j = 0; j < 3; j++)
-		printf("rgb sky %d | rgb floor %d\n", map->rgb_sky[j], map->rgb_floor[j]);
 	check_stat(map);
 	return (1);
 }
