@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 16:31:28 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 19:42:55 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 01:20:28 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	check_column(char **column, int y, int x, int size_y)
 {
 	while (y < size_y)
 	{
-		//printf("y = %d x = %d char = %c\n", y, x, column[y][x]);
 		if (y == 0 && !is_valid_char(column[y][x], "1 "))
 			return (0);
 		if (!is_valid_char(column[y][x], "10NSEW "))
@@ -26,10 +25,7 @@ int	check_column(char **column, int y, int x, int size_y)
 			if (y > 0 && column[y - 1][x] != '1')
 				return (0);
 			while (y < size_y && column[y][x] == ' ')
-			{
-				//printf("0 | ");
 				y++;
-			}
 			if (y < size_y && column[y][x] != '1')
 				return (0);
 		}
@@ -43,7 +39,6 @@ int	check_column(char **column, int y, int x, int size_y)
 
 int	vertical_check(t_map *map, int y, int x)
 {
-	//printf("YOOOOOOO size_y = %d\n\n\n", size_y);
 	while (map->map_tab[y][x])
 	{
 		if (!check_column(map->map_tab, y, x, map->height_map))
@@ -98,7 +93,6 @@ int	ft_wall_error(t_map *map)
 	x = 0;
 	if (!horizontal_check(map, y, x))
 		return (0);
-	//printf("\n\n y = %d x = %d size_y = %d\n", y, x, size_y);
 	if (!vertical_check(map, y, x))
 		return (0);
 	return (1);

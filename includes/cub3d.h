@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 00:11:17 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 01:36:30 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ int		ft_test_file(char *argv);
 
 /* FREE_FUNCTIONS */
 
-void	free_map_tab(t_map *map);
-void	free_map_data(t_map *map);
+// void	free_map_tab(t_map *map);
+// void	free_map_data(t_map *map);
+void	free_double_array(char **str);
 int		close_game(t_map *map);
 
 /* ********************************************************** */

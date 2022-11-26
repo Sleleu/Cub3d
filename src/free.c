@@ -6,41 +6,55 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:34:22 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/25 16:36:41 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 01:37:53 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	free_map_tab(t_map *map)
+void	free_double_array(char **str)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	while (map->map_tab[i])
+	while (str[i])
 	{
-		free(map->map_tab[i]);
+		free(str[i]);
 		i++;
 	}
-	free(map->map_tab);
+	free(str);
 }
 
-void	free_map_data(t_map *map)
-{
-	int	i;
+// void	free_map_tab(t_map *map)
+// {
+// 	int	i;
 
-	i = 0;
-	while (map->map_data[i])
-	{
-		free(map->map_data[i]);
-		i++;
-	}
-	free(map->map_data);
-}	
+// 	i = 0;
+// 	while (map->map_tab[i])
+// 	{
+// 		free(map->map_tab[i]);
+// 		i++;
+// 	}
+// 	free(map->map_tab);
+// }
+
+// void	free_map_data(t_map *map)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (map->map_data[i])
+// 	{
+// 		free(map->map_data[i]);
+// 		i++;
+// 	}
+// 	free(map->map_data);
+// }	
 
 int close_game(t_map *map)
 {
-    free_map_tab(map);
+    free_double_array(map->map_tab);
+	free_double_array(map->map_data);
 	mlx_destroy_window(map->mlx, map->mlx_win);
 	mlx_destroy_display(map->mlx);
     free(map->mlx);

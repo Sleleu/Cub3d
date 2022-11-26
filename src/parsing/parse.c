@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:13:33 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 00:36:22 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 01:52:26 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ int error_map(t_map *map)
 
 void    parse_error(t_map *map, char *message)
 {
-    //write(2, message, ft_strlen(message));
+    ft_printf(message);
     if (map->map_tab)
-        free_map_tab(map);
+        free_double_array(map->map_tab);
     if (map->map_data)
-        free_map_data(map);
+        free_double_array(map->map_data);
     if (map->line)
         free(map->line);
     if (map->map_line)
         free(map->map_line);
-    exit (write(2, message, ft_strlen(message)));
+    exit (EXIT_FAILURE);
 }
 
 /*
@@ -96,12 +96,15 @@ void	ft_read_map(int fd, t_map *map)
 	{
 		map->line = get_next_line(fd);
 		if (!map->line)
-            break ;
-        if (map->line[0] == '\n')
-            map->line[0] = ' ';
-        if (ft_strchr(map->line, '/'))
-            parse_error(map, "Error\nInvalid character in map\n");
-		map->map_line = ft_strjoin_cub3d(map->map_line, map->line);
+			break ;
+		if (map->line[0] == '\n')
+			map->line[0] = ' ';
+		if (get_map_stat(map, map->line) == 1)
+		{
+			if (ft_strchr(map->line, '/'))
+				parse_error(map, "Error\nInvalid character in map\n");
+			map->map_line = ft_strjoin_cub3d(map->map_line, map->line);
+		}
 		free(map->line);
 	}
 	map->map_tab = ft_split(map->map_line, '/');

@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:08:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 00:38:48 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/26 01:53:07 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,16 @@ void	bzero_struct(t_map *map)
 	map->p_direction = '\0';
 	while (i < 3)
 	{
-		map->rgb_floor[i] = 0;
-		map->rgb_sky[i] = 0;
+		map->rgb_floor[i] = -1;
+		map->rgb_sky[i] = -1;
 		i++;
 	}
 	map->line = NULL;
 	map->map_line = NULL;
+	map->north = NULL;
+	map->south = NULL;
+	map->east = NULL;
+	map->west = NULL;
 }
 
 int	main(int ac, char **av)
@@ -67,7 +71,7 @@ int	main(int ac, char **av)
 	}
 	if (!ft_parse_map(&map, fd))
 	{
-		free_map_tab(&map);
+		free_double_array(map.map_tab);
 		return (38);
 	}
 	ft_init_game(&map);
