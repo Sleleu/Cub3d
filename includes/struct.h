@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 20:40:51 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/27 15:11:45 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 typedef struct  s_map
 {
-    // display pointer
+    // display data
     void    *mlx;
     void    *mlx_win;
+	int		display_width;
+	int		display_height;
 
     // path of textures
     char    *north;
@@ -32,9 +34,12 @@ typedef struct  s_map
     int     height_map;
 
     // player data
-    int     p_pos_x;
-    int     p_pos_y;
-    char    p_direction;
+	double pos_x;
+	double pos_y;
+	double dir_x;
+	double dir_y;
+	double plane_x;
+	double plane_y;
 
     // color data
     int     rgb_floor[3];

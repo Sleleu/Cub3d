@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:34:22 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 21:18:04 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/27 15:15:46 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	free_rgb_texture(t_map *map)
 
 void	free_double_array(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -52,13 +52,13 @@ void	free_double_array(char **str)
 	free(str);
 }
 
-int close_game(t_map *map)
+int	close_game(t_map *map)
 {
 	free_rgb_texture(map);
-    free_double_array(map->map_tab);
+	free_double_array(map->map_tab);
 	destroy_image(map);
 	mlx_destroy_window(map->mlx, map->mlx_win);
 	mlx_destroy_display(map->mlx);
-    free(map->mlx);
-    exit (0);
+	free(map->mlx);
+	exit (0);
 }

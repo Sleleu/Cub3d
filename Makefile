@@ -6,7 +6,7 @@
 #    By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 19:08:41 by sleleu            #+#    #+#              #
-#    Updated: 2022/11/26 18:21:02 by sleleu           ###   ########.fr        #
+#    Updated: 2022/11/27 15:18:32 by sleleu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC =	src/main.c \
 
 OBJ = $(SRC:.c=.o)
 
-CC = gcc
+CC = cc
 
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -g3 -O3 -c $< -o $@

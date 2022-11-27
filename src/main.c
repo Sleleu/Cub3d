@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:08:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 22:26:31 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/27 15:13:58 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ void	bzero_struct(t_map *map)
 	map->map_data = NULL;
 	map->width_map = 0;
 	map->height_map = 0;
-	map->p_pos_x = 0;
-	map->p_pos_y = 0;
-	map->p_direction = '\0';
 	map->rgb_floor[0] = -1;
 	map->rgb_floor[1] = -1;
 	map->rgb_floor[2] = -1;
