@@ -6,7 +6,7 @@
 #    By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 19:08:41 by sleleu            #+#    #+#              #
-#    Updated: 2022/11/27 15:18:32 by sleleu           ###   ########.fr        #
+#    Updated: 2022/11/27 15:44:00 by sleleu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC =	src/main.c \
 		src/parsing/parse_rgb_texture.c \
 		src/free.c \
 		src/game/init_game.c \
+		src/game/key_events.c \
 
 OBJ = $(SRC:.c=.o)
 

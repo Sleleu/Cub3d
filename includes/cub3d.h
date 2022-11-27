@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 21:19:20 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/27 15:43:01 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,14 @@ void	get_rgb(t_map *map, int *rgb, char **split_line);
 /*                           GAME                             */
 /* ********************************************************** */
 
+/* KEY_EVENTS */
+
+int		key_hook(int keycode, t_map *map);
+
 /* INIT_GAME */
 
 void	game_error(t_map *map, char *message);
+void	ft_init_game_stat(t_map *map);
 void	ft_init_img(t_map *map);
 int		ft_init_game(t_map *map);
 

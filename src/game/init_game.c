@@ -6,18 +6,11 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/27 15:20:29 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/27 15:43:46 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-int	key_hook(int keycode, t_map *map)
-{
-	if (keycode == KEY_ESC)
-		close_game(map);
-	return (0);
-}
 
 void	game_error(t_map *map, char *message)
 {
@@ -52,7 +45,7 @@ void	ft_init_img(t_map *map)
 		game_error(map, "Error\nPath to the east texture is incorrect\n");
 }
 
-void	init_game_stat(t_map *map)
+void	ft_init_game_stat(t_map *map)
 {
 	map->display_width = 1280;
 	map->display_height = 1024;
@@ -62,7 +55,7 @@ void	init_game_stat(t_map *map)
 
 int	ft_init_game(t_map *map)
 {
-	init_game_stat(map);
+	ft_init_game_stat(map);
 	map->mlx = mlx_init();
 	if (!map->mlx)
 		game_error(map, "Error\nInitialisation of display has failed\n");
