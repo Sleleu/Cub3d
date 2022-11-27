@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/27 15:43:46 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:49:54 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,30 @@ void	ft_init_img(t_map *map)
 
 void	ft_init_game_stat(t_map *map)
 {
+	map->map_x = (int)map->pos_x;
+	map->map_y = (int)map->pos_y;
 	map->display_width = 1280;
 	map->display_height = 1024;
-	map->plane_x = 0;
-	map->plane_y = 0.66;
+	if (map->direction == 'N')
+	{
+		map->plane_x = 0;
+		map->plane_y = 0.66;
+	}
+	if (map->direction == 'S')
+	{
+		map->plane_x = 0;
+		map->plane_y = -0.66;
+	}
+	if (map->direction == 'W')
+	{
+		map->plane_x = -0.66;
+		map->plane_y = 0;
+	}
+	if (map->direction == 'E')
+	{
+		map->plane_x = 0.66;
+		map->plane_y = 0;
+	}
 }
 
 int	ft_init_game(t_map *map)
@@ -64,6 +84,7 @@ int	ft_init_game(t_map *map)
 	if (!map->mlx_win)
 		game_error(map, "Error\nInitialisation of window has failed\n");
 	ft_init_img(map);
+	raycasting(map);
 	mlx_hook(map->mlx_win, 2, 1L << 0, key_hook, map);
 	mlx_hook(map->mlx_win, 17, 1L << 0, close_game, map);
 	mlx_loop(map->mlx);

@@ -23,3 +23,4 @@ make
 - https://lodev.org/cgtutor/raycasting.html
 - https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/
 - https://github.com/vinibiavatti1/RayCastingTutorial/wiki
+- https://github.com/qst0/ft_libgfx

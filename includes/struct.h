@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/27 15:11:45 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:30:49 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct  s_map
     int     height_map;
 
     // player data
+	char   direction;
 	double pos_x;
 	double pos_y;
 	double dir_x;
@@ -60,6 +61,24 @@ typedef struct  s_map
 	void	*img_so;
 	void	*img_ea;
 	void	*img_we;
+
+	//raycasting
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	cam_x;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		map_x;
+	int		map_y; // coordonnees
+	int		step_x;
+	int		step_y;
+	int		wall_side;
+	int		wall_dist;
+	int		size_line;
+	int		start_line;
+	int		end_line;
 
 }   t_map;
 

@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:48:55 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/27 15:14:23 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/27 22:38:21 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	assign_player_pos(t_map *map, char direction, int i, int j)
 {
 	map->pos_y = i;
 	map->pos_x = j;
+	map->direction = direction;
 	if (direction == 'N')
 	{
 		map->dir_x = 0;
