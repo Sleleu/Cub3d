@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 15:40:47 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/28 20:32:47 by rvrignon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		key_hook(int keycode, t_map *map);
 /* INIT_GAME */
 
 void	game_error(t_map *map, char *message);
-void	ft_init_game_stat(t_map *map);
+t_map	ft_init_game_stat(t_map map);
 void	ft_init_img(t_map *map);
 int		ft_init_game(t_map *map);
 
@@ -116,6 +116,9 @@ void	raycasting(t_map *map);
 
 /* DRAW */
 
-void	draw_column(t_map *map, int line_height, int x);
+void	img_pix_put(t_map *map, int x, int y, int color);
+void	draw_column(t_map *map, int x);
+void	game(t_map *map);
+int		render(t_map *map);
 
 #endif

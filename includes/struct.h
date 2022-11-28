@@ -3,21 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 01:00:06 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/28 20:26:54 by rvrignon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
 typedef struct  s_map
 {
     // display data
     void    *mlx;
     void    *mlx_win;
+	t_img	img;
 	int		display_width;
 	int		display_height;
 
@@ -80,6 +90,8 @@ typedef struct  s_map
 	int		size_line;
 	int		start_line;
 	int		end_line;
+	double	speed;
+	double	rot_speed;
 
 }   t_map;
 

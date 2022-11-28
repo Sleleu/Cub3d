@@ -3,20 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:34:10 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 17:52:00 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/28 20:22:05 by rvrignon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	draw_column(t_map *map, int line_height, int x)
+void	img_pix_put(t_map *map, int x, int y, int color)
+{
+	char	*pixel;
+	t_img	img;
+
+	img = map->img;
+	if (y < 0 || y > map->display_height - 1 || x < 0 || x > map->display_width - 1)
+		return ;
+	pixel = img.addr + (y * img.line_len + x * (img.bpp / 8));
+	*(int *)pixel = color;
+}
+
+void	draw_column(t_map *map, int x)
 {
 	int	start;
 	int end;
+	int line_height;
 	
+	line_height = map->display_height / map->perpwalldist;
 	start = -line_height / 2 + map->display_height / 2;
 	if (start < 0)
 		start = 0;
@@ -26,9 +40,9 @@ void	draw_column(t_map *map, int line_height, int x)
 	while (start < end)
 	{
 		if (map->wall_side == 1)
-			mlx_pixel_put(map->mlx, map->mlx_win, x, start, 200200200);
+			img_pix_put(map, x, start, 200200200);
 		else
-			mlx_pixel_put(map->mlx, map->mlx_win, x, start, 100100100);
+			img_pix_put(map, x, start, 100100100);
 		start++;
 	}
 }
