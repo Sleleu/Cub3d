@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/27 23:49:54 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/28 01:14:07 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	ft_init_img(t_map *map)
 
 void	ft_init_game_stat(t_map *map)
 {
-	map->map_x = (int)map->pos_x;
-	map->map_y = (int)map->pos_y;
 	map->display_width = 1280;
 	map->display_height = 1024;
 	if (map->direction == 'N')

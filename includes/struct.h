@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/27 23:30:49 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/28 01:00:06 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct  s_map
 	double	side_dist_y;
 	double	delta_dist_x;
 	double	delta_dist_y;
+	double	perpwalldist;
 	int		map_x;
 	int		map_y; // coordonnees
 	int		step_x;

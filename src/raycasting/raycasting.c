@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:40:00 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 00:40:25 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/28 01:24:42 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,22 @@ void	digital_differential_analyser(t_map *map)
 		}
 		if (map->map_tab[map->map_y][map->map_x] == '1')
 			wall = 1; // le rayon touche un mur
-		printf("mapY %d map_X %d\n", map->map_y, map->map_x);
-		printf("\nsideX %f, sideY %f deltaX %f deltaY %f", map->side_dist_x, map->side_dist_y, map->delta_dist_x, map->delta_dist_x);
-		printf("\nCHARACTER %c\n", map->map_tab[map->map_y][map->map_x]);
-		sleep(1);
+		//printf("mapY %d map_X %d\n", map->map_y, map->map_x);
+	//	printf("\nsideX %f, sideY %f deltaX %f deltaY %f", map->side_dist_x, map->side_dist_y, map->delta_dist_x, map->delta_dist_x);
+		//printf("\nCHARACTER %c\n", map->map_tab[map->map_y][map->map_x]);
 		//sleep(1);
 	}
-	printf("SORTI DU MUR\n");
-	exit(0);
+	//printf("SORTI DU MUR\n");
+	//exit(0);
+}
+
+void	init_raycasting(t_map *map, int x)
+{
+	map->map_x = (int)map->pos_x;
+	map->map_y = (int)map->pos_y;
+	map->cam_x = 2 * x / (double)map->display_width - 1;
+	map->ray_dir_x = map->dir_x + map->plane_x * map->cam_x;
+	map->ray_dir_y = map->dir_y + map->plane_y * map->cam_x;
 }
 
 void	raycasting(t_map *map)
@@ -84,18 +92,19 @@ void	raycasting(t_map *map)
 	int x;
 
 	x = 0;
-	while (x < map->display_width)
+	while (x < map->display_width - 1000)
 	{
-		map->cam_x = 2 * x / (double)map->display_width - 1;
-		map->ray_dir_x = map->dir_x + map->plane_x * map->cam_x;
-		map->ray_dir_y = map->dir_y + map->plane_y * map->cam_x;
-
-		// calcul de delta_dist
-		get_delta_dist(map);
-		
-		//calcul de step
+		init_raycasting(map, x);
+		get_delta_dist(map); // calcul de delta dist
 		get_step(map);
-		digital_differential_analyser(map);
+		digital_differential_analyser(map); // algo
+		
+		// calcul distance joueur/mur
+		if (map->wall_side == 0)
+			map->perpwalldist = map->side_dist_x - map->delta_dist_x;
+		else
+			map->perpwalldist = map->side_dist_y - map->delta_dist_y;
 		x++;
+		//printf("x = %d | perpwalldist = %f | side_dist_y %f | delta_dist_y %f\n", x, map->perpwalldist, map->side_dist_y, map->delta_dist_y);
 	}
 }
