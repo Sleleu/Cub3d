@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 20:47:52 by rvrignon         ###   ########.fr       */
+/*   Updated: 2022/11/28 22:50:00 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	ft_init_img(t_map *map)
 
 t_map	ft_init_game_stat(t_map map)
 {
-	map.speed = 0.20;
-    map.rot_speed = 0.20;
-	map.display_width = 1920;
-	map.display_height = 1280;
+	map.speed = 0.50;
+    map.rot_speed = 0.07;
+	map.display_width = 1280;
+	map.display_height = 1024;
 	if (map.direction == 'N')
 	{
 		map.plane_x = 0.66;
@@ -84,7 +84,13 @@ void	render_background(t_map *map)
 	{
 		y = 0;
 		while (y < map->display_height)
-			img_pix_put(map, x, y++, 0x4d4d4d);
+		{
+			if (y < map->display_height / 2)
+				img_pix_put(map, x, y, 0x0d9dff);
+			else
+				img_pix_put(map, x, y, 0x4d4d4d);
+			y++;
+		}
 		++x;
 	}
 }
