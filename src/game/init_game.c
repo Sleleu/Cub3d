@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 16:23:27 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/28 18:02:38 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,23 @@ void	ft_init_game_stat(t_map *map)
 	map->display_height = 1024;
 	if (map->direction == 'N')
 	{
-		map->plane_x = 0;
-		map->plane_y = -0.66;
+		map->plane_x = 0.66;
+		map->plane_y = 0;
 	}
 	if (map->direction == 'S')
-	{
-		map->plane_x = 0;
-		map->plane_y = 0.66; // inversion avec nord
-	}
-	if (map->direction == 'W')
 	{
 		map->plane_x = -0.66;
 		map->plane_y = 0;
 	}
+	if (map->direction == 'W')
+	{
+		map->plane_x = 0;
+		map->plane_y = 0.66;
+	}
 	if (map->direction == 'E')
 	{
-		map->plane_x = 0.66;
-		map->plane_y = 0;
+		map->plane_x = 0;
+		map->plane_y = -0.66;
 	}
 }
 
