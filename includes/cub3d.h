@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/27 20:40:32 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/28 15:40:47 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,8 @@ double convert_degree_radians(int degree);
 
 void	raycasting(t_map *map);
 
+/* DRAW */
+
+void	draw_column(t_map *map, int line_height, int x);
 
 #endif
