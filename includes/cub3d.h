@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 16:55:36 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/29 17:39:14 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int		key_hook(int keycode, t_map *map);
 /* INIT_GAME */
 
 void	game_error(t_map *map, char *message);
-t_map	ft_init_game_stat(t_map map);
+void	ft_init_game_stat(t_map *map);
 void	ft_init_img(t_map *map);
 int		ft_init_game(t_map *map);
 

@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 16:58:18 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/29 19:13:38 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,50 +28,45 @@ void	game_error(t_map *map, char *message)
 
 void	ft_init_img(t_map *map)
 {
-	int	w;
-	int	h;
+	int	i;
 
-	map->img_no = mlx_xpm_file_to_image(map->mlx, map->north, &w, &h);
-	if (!map->img_no)
-		game_error(map, "Error\nPath to the north texture is incorrect\n");
-	map->img_so = mlx_xpm_file_to_image(map->mlx, map->south, &w, &h);
-	if (!map->img_so)
-		game_error(map, "Error\nPath to the south texture is incorrect\n");
-	map->img_we = mlx_xpm_file_to_image(map->mlx, map->west, &w, &h);
-	if (!map->img_we)
-		game_error(map, "Error\nPath to the west texture is incorrect\n");
-	map->img_ea = mlx_xpm_file_to_image(map->mlx, map->north, &w, &h);
-	if (!map->img_ea)
-		game_error(map, "Error\nPath to the east texture is incorrect\n");
+	i = 0;
+	while (i < 4)
+	{
+		map->img[i].mlx_img = mlx_xpm_file_to_image(map->mlx, map->img[i].path,
+		&map->img[i].w, &map->img[i].h);
+		if (!map->img[i].mlx_img)
+			game_error(map, "Error\nPath texture is incorrect\n");
+		i++;
+	}
 }
 
-t_map	ft_init_game_stat(t_map map)
+void	ft_init_game_stat(t_map *map)
 {
-	map.speed = 0.07;
-    map.rot_speed = 0.06;
-	map.display_width = 1940;
-	map.display_height = 1280;
-	if (map.direction == 'N')
+	map->speed = 0.07;
+    map->rot_speed = 0.06;
+	map->display_width = 1940;
+	map->display_height = 1280;
+	if (map->direction == 'N')
 	{
-		map.plane_x = 0.66;
-		map.plane_y = 0;
+		map->plane_x = 0.66;
+		map->plane_y = 0;
 	}
-	if (map.direction == 'S')
+	if (map->direction == 'S')
 	{
-		map.plane_x = -0.66;
-		map.plane_y = 0;
+		map->plane_x = -0.66;
+		map->plane_y = 0;
 	}
-	if (map.direction == 'W')
+	if (map->direction == 'W')
 	{
-		map.plane_x = 0;
-		map.plane_y = 0.66;
+		map->plane_x = 0;
+		map->plane_y = 0.66;
 	}
-	if (map.direction == 'E')
+	if (map->direction == 'E')
 	{
-		map.plane_x = 0;
-		map.plane_y = -0.66;
+		map->plane_x = 0;
+		map->plane_y = -0.66;
 	}
-	return (map);
 }
 
 void	render_background(t_map *map)
@@ -99,45 +94,51 @@ int		render(t_map *map)
 {
 	render_background(map);
 	raycasting(map);
-	mlx_put_image_to_window(map->mlx, map->mlx_win, map->img.mlx_img, 0, 0);
+	mlx_put_image_to_window(map->mlx, map->mlx_win, map->mlx_img, 0, 0);
 	return (0);
 }
 
 int	ft_init_game(t_map *map)
 {
-	t_map data;
-
-	data = *map;
-	data = ft_init_game_stat(data);
-	data.mlx = mlx_init();
-	if (!data.mlx)
-		game_error(&data, "Error\nInitialisation of display has failed\n");
-	data.mlx_win = mlx_new_window(data.mlx, data.display_width, data.display_height, "Cub3D");
-	if (!data.mlx_win)
-		game_error(&data, "Error\nInitialisation of window has failed\n");
-	data.img.mlx_img = mlx_new_image(data.mlx, data.display_width, data.display_height);
-	if (!data.img.mlx_img)
-		game_error(&data, "Error\nErreur jtai dis\n");
-	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
-	mlx_loop_hook(data.mlx, &render, &data);
-	mlx_hook(data.mlx_win, 2, 1L << 0, key_hook, &data);
-	mlx_hook(data.mlx_win, 17, 1L << 0, close_game, &data);
-	mlx_loop(data.mlx);
+	ft_init_game_stat(map);
+	map->mlx = mlx_init();
+	if (!map->mlx)
+		game_error(map, "Error\nInitialisation of display has failed\n");
+	map->mlx_win = mlx_new_window(map->mlx, map->display_width, map->display_height, "Cub3D");
+	if (!map->mlx_win)
+		game_error(map, "Error\nInitialisation of window has failed\n");
+	ft_init_img(map);
+	map->mlx_img = mlx_new_image(map->mlx, map->display_width, map->display_height);
+	if (!map->mlx_img)
+		game_error(map, "Error\nErreur jtai dis\n");
+	map->img_add = mlx_get_data_addr(map->mlx_img, &map->img_bpp, &map->img_len, &map->img_endian);
+	map->img_no_add = mlx_get_data_addr(map->img[0].mlx_img,  &map->img_no_bpp, &map->img_no_len, &map->img_no_endian);
+	mlx_loop_hook(map->mlx, &render, map);
+	mlx_hook(map->mlx_win, 2, 1L << 0, key_hook, map);
+	mlx_hook(map->mlx_win, 17, 1L << 0, close_game, map);
+	mlx_loop(map->mlx);
 	return (0);
 }
 
 // int	ft_init_game(t_map *map)
 // {
-// 	ft_init_game_stat(map);
-// 	map->mlx = mlx_init();
-// 	if (!map->mlx)
-// 		game_error(map, "Error\nInitialisation of display has failed\n");
-// 	if (!map->mlx_win)
-// 		game_error(map, "Error\nInitialisation of window has failed\n");
-// 	ft_init_img(map);
-// 	raycasting(map);
-// 	mlx_hook(map->mlx_win, 2, 1L << 0, key_hook, map);
-// 	mlx_hook(map->mlx_win, 17, 1L << 0, close_game, map);
-// 	mlx_loop(map->mlx);
-// 	return (1);
+// 	t_map data;
+
+// 	data = *map;
+// 	data = ft_init_game_stat(data);
+// 	data.mlx = mlx_init();
+// 	if (!data.mlx)
+// 		game_error(&data, "Error\nInitialisation of display has failed\n");
+// 	data.mlx_win = mlx_new_window(data.mlx, data.display_width, data.display_height, "Cub3D");
+// 	if (!data.mlx_win)
+// 		game_error(&data, "Error\nInitialisation of window has failed\n");
+// 	data.img.mlx_img = mlx_new_image(data.mlx, data.display_width, data.display_height);
+// 	if (!data.img.mlx_img)
+// 		game_error(&data, "Error\nErreur jtai dis\n");
+// 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
+// 	mlx_loop_hook(data.mlx, &render, &data);
+// 	mlx_hook(data.mlx_win, 2, 1L << 0, key_hook, &data);
+// 	mlx_hook(data.mlx_win, 17, 1L << 0, close_game, &data);
+// 	mlx_loop(data.mlx);
+// 	return (0);
 // }

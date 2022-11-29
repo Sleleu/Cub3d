@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 18:15:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/27 15:38:39 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/29 19:06:19 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	get_texture_path(t_map *map, char **path, char **split_line)
 	if (path[0][ft_strlen_cub3d(*path)] == '\n')
 		path[0][ft_strlen_cub3d(*path)] = '\0';
 	free_double_array(split_line);
-	printf("%s\n", *path);
 }
 
 /*

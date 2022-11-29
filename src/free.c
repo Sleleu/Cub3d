@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:34:22 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/27 15:15:46 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/29 19:03:45 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,30 @@
 
 void	destroy_image(t_map *map)
 {
+	int	i;
+
+	i = 0;
 	if (map->mlx)
 	{
-		if (map->img_no)
-			mlx_destroy_image(map->mlx, map->img_no);
-		if (map->img_so)
-			mlx_destroy_image(map->mlx, map->img_so);
-		if (map->img_we)
-			mlx_destroy_image(map->mlx, map->img_we);
-		if (map->img_ea)
-			mlx_destroy_image(map->mlx, map->img_ea);
+		while (i < 4)
+		{
+			if (map->img[i].mlx_img)
+				mlx_destroy_image(map->mlx, map->img[i].mlx_img);
+			i++;
+		}
 	}		
 }
 
 void	free_rgb_texture(t_map *map)
 {
-	if (map->north)
-		free(map->north);
-	if (map->south)
-		free(map->south);
-	if (map->east)
-		free(map->east);
-	if (map->west)
-		free(map->west);
+	if (map->img[0].path)
+		free(map->img[0].path);
+	if (map->img[1].path)
+		free(map->img[1].path);
+	if (map->img[2].path)
+		free(map->img[2].path);
+	if (map->img[3].path)
+		free(map->img[3].path);
 }
 
 void	free_double_array(char **str)

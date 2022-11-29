@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 20:26:54 by rvrignon         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:13:26 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 typedef struct s_img
 {
 	void	*mlx_img;
+	char	*path;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		w;
+	int		h;
 }	t_img;
 
 typedef struct  s_map
@@ -27,15 +30,9 @@ typedef struct  s_map
     // display data
     void    *mlx;
     void    *mlx_win;
-	t_img	img;
+	t_img	img[4];
 	int		display_width;
 	int		display_height;
-
-    // path of textures
-    char    *north;
-    char    *south;
-    char    *east;
-    char    *west;
 
     // map data
     char    **map_tab;
@@ -56,12 +53,6 @@ typedef struct  s_map
     int     rgb_floor[3];
     int     rgb_sky[3];
 
-    // image pointer
-    void    *north_wall;
-    void    *south_wall;
-    void    *east_wall;
-    void    *west_wall;
-
     // parsing variables
     char    *line;
     char    *map_line;
@@ -71,6 +62,20 @@ typedef struct  s_map
 	void	*img_so;
 	void	*img_ea;
 	void	*img_we;
+	void	*mlx_img;
+	void	*img_add;
+	int		img_bpp;
+	int		img_endian;
+	int		img_len;
+
+	//img no
+	void	*img_no_add;
+	int		img_no_bpp;
+	int		img_no_endian;
+	int		img_no_len;
+
+	int		tex_x;
+	int		tex_y;
 
 	//raycasting
 	double	ray_dir_x;

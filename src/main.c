@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:08:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 19:58:30 by rvrignon         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:06:00 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ int	ft_test_file(char *argv)
 
 void	bzero_struct(t_map *map)
 {
+	int	i;
+
+	i = 0;
 	map->map_tab = NULL;
 	map->map_data = NULL;
 	map->width_map = 0;
@@ -46,14 +49,12 @@ void	bzero_struct(t_map *map)
 	map->rgb_sky[2] = -1;
 	map->line = NULL;
 	map->map_line = NULL;
-	map->north = NULL;
-	map->south = NULL;
-	map->east = NULL;
-	map->west = NULL;
-	map->img_no = NULL;
-	map->img_so = NULL;
-	map->img_we = NULL;
-	map->img_ea = NULL;
+	while (i < 4)
+	{
+		map->img[i].mlx_img = NULL;
+		map->img[i].path = NULL;
+		i++;
+	}
 }
 
 int	main(int ac, char **av)
