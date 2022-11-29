@@ -3,34 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:40:00 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 20:43:18 by rvrignon         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:28:55 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
 void	get_delta_dist(t_map *map)
-{
-	// if (map->ray_dir_y == 0)
-	// 	map->delta_dist_y = 1e30;
-	// else
-	// 	map->delta_dist_y = sqrt(1 + (map->ray_dir_y * map->ray_dir_y) / (map->ray_dir_x * map->ray_dir_x));
-	// if (map->ray_dir_x == 0)
-	// 	map->delta_dist_x = 1e30;
-	// else
-	// 	map->delta_dist_x = sqrt(1 + (map->ray_dir_x * map->ray_dir_x) / (map->ray_dir_y * map->ray_dir_y));
-	
+{	
 	if (map->ray_dir_x == 0)
-		map->delta_dist_x = 1e30;
+		map->delta_dist_x = INT_MAX;
 	else
-		map->delta_dist_x = (double)sqrt(1 + (map->ray_dir_y * map->ray_dir_y) / (map->ray_dir_x * map->ray_dir_x));
+		map->delta_dist_x = fabs(1 / map->ray_dir_x);
 	if (map->ray_dir_y == 0)
-		map->delta_dist_y = 1e30;
+		map->delta_dist_y = INT_MAX;
 	else
-		map->delta_dist_y = (double)sqrt(1 + (map->ray_dir_x * map->ray_dir_x) / (map->ray_dir_y * map->ray_dir_y));
+		map->delta_dist_y = fabs(1 / map->ray_dir_y);	
 }
 
 void	get_step(t_map *map)
@@ -84,8 +75,6 @@ void	digital_differential_analyser(t_map *map)
 		// printf("\nCHARACTER %c\n", map->map_tab[map->map_y][map->map_x]);
 		// sleep(1);
 	}
-	//printf("SORTI DU MUR\n");
-	//exit(0);
 }
 
 void	init_raycasting(t_map *map, int x)
@@ -107,14 +96,13 @@ void	raycasting(t_map *map)
 	while (x < map->display_width)
 	{
 		init_raycasting(map, x);
-		get_delta_dist(map); // calcul de delta dist
+		get_delta_dist(map);
 		get_step(map);
-		digital_differential_analyser(map); // algo
-		// calcul distance joueur/mur
+		digital_differential_analyser(map);
 		if (map->wall_side == 0)
-			map->perpwalldist = (map->side_dist_x - map->delta_dist_x);
+			map->perpwalldist = ((map->side_dist_x - map->delta_dist_x));
 		else
-			map->perpwalldist = (map->side_dist_y - map->delta_dist_y);
+			map->perpwalldist = ((map->side_dist_y - map->delta_dist_y));
 		// printf("perpwalldist %f, side_dist_x %f delta_dist %f\n", map->perpwalldist, map->side_dist_x, map->delta_dist_x);
 		draw_column(map, x);
 		x++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:34:10 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 20:22:05 by rvrignon         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:27:03 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_column(t_map *map, int x)
 	while (start < end)
 	{
 		if (map->wall_side == 1)
-			img_pix_put(map, x, start, 200200200);
+			img_pix_put(map, x, start, 300200200);
 		else
 			img_pix_put(map, x, start, 100100100);
 		start++;

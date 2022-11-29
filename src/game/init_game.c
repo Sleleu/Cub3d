@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/28 22:50:00 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/29 15:15:10 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_init_img(t_map *map)
 
 t_map	ft_init_game_stat(t_map map)
 {
-	map.speed = 0.50;
+	map.speed = 0.10;
     map.rot_speed = 0.07;
 	map.display_width = 1280;
 	map.display_height = 1024;
