@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 16:20:03 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:55:36 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ void	game_error(t_map *map, char *message);
 t_map	ft_init_game_stat(t_map map);
 void	ft_init_img(t_map *map);
 int		ft_init_game(t_map *map);
+
+/* MOVES */
+
+void    move(t_map *map, double next_x, double next_y, char sign);
+void    rotate(t_map *map, double rot_spd);
 
 /* ********************************************************** */
 /*                           RAYCASTING                       */

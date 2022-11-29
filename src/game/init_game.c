@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 15:15:10 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:58:18 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	ft_init_img(t_map *map)
 
 t_map	ft_init_game_stat(t_map map)
 {
-	map.speed = 0.10;
-    map.rot_speed = 0.07;
-	map.display_width = 1280;
-	map.display_height = 1024;
+	map.speed = 0.07;
+    map.rot_speed = 0.06;
+	map.display_width = 1940;
+	map.display_height = 1280;
 	if (map.direction == 'N')
 	{
 		map.plane_x = 0.66;
@@ -119,7 +119,6 @@ int	ft_init_game(t_map *map)
 	if (!data.img.mlx_img)
 		game_error(&data, "Error\nErreur jtai dis\n");
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
-	// render(&data);
 	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_hook(data.mlx_win, 2, 1L << 0, key_hook, &data);
 	mlx_hook(data.mlx_win, 17, 1L << 0, close_game, &data);
