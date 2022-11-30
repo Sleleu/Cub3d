@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 20:57:25 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 21:05:43 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,6 @@ typedef struct  s_map
     // parsing variables
     char    *line;
     char    *map_line;
-
-	// images
-	void	*img_no;
-	void	*img_so;
-	void	*img_ea;
-	void	*img_we;
-	void	*mlx_img;
-	void	*img_add;
-	int		img_bpp;
-	int		img_endian;
-	int		img_len;
-
-	//img no
-	void	*img_no_add;
-	int		img_no_bpp;
-	int		img_no_endian;
-	int		img_no_len;
 
 	// colors
 	double	wall_x;

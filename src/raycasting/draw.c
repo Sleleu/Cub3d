@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:34:10 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 20:59:23 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 22:13:12 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,25 @@ void	draw_column(t_map *map, int x)
 	{
 		map->tex_y = (int)map->tex_pos & (128 - 1);
 		map->tex_pos += map->step;
-		if (map->wall_side == 1)
+		if (map->wall_side == 1 && map->ray_dir_y < 0)
 		{
 			color = get_color(map, map->tex_x, map->tex_y, 0);
 			img_pix_put(map, x, start, color);
 		}
+		else if (map->wall_side == 1)
+		{
+			color = get_color(map, map->tex_x, map->tex_y, 1);
+			img_pix_put(map, x, start, color);
+		}
+		else if (map->wall_side == 0 && map->ray_dir_x < 0)
+		{
+			color = get_color(map, map->tex_x, map->tex_y, 2);
+			img_pix_put(map, x, start, color);
+		}
 		else
 		{
-			color = get_color(map, map->tex_x, map->tex_y, 0);
-			img_pix_put(map, x, start, color >> 1 & 8355711);
+			color = get_color(map, map->tex_x, map->tex_y, 3);
+			img_pix_put(map, x, start, color);
 		}
 		start++;
 	}
