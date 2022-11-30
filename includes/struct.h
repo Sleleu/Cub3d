@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 21:05:43 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 22:32:54 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ typedef struct  s_map
 	int		size_line;
 	int		start_line;
 	int		end_line;
+	int		start;
+	int		end;
 	double	speed;
 	double	rot_speed;
 

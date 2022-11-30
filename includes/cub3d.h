@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 17:39:14 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 22:52:56 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@
 # define KEY_DOWN		65364
 # define KEY_LEFT		65361
 # define KEY_RIGHT		65363
+
+enum	direction
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3
+};
 
 
 /* ********************************************************** */
@@ -114,17 +122,28 @@ void    rotate(t_map *map, double rot_spd);
 /*                           RAYCASTING                       */
 /* ********************************************************** */
 
+/* RAYCASTING */
+
+void	get_delta_dist(t_map *map);
+void	get_step(t_map *map);
+void	digital_differential_analyser(t_map *map);
+void	init_raycasting(t_map *map, int x);
+void	raycasting(t_map *map);
+
 /* UTILS */
 
-double convert_degree_radians(int degree);
-
-void	raycasting(t_map *map);
+int		get_color(t_map *map, int x, int y, int i);
 
 /* DRAW */
 
 void	img_pix_put(t_map *map, int x, int y, int color);
 void	draw_column(t_map *map, int x);
-void	game(t_map *map);
+void	define_texture(t_map *map, int start, int line_height);
+int		render(t_map *map);
+
+/* RENDER */
+
+void	render_background(t_map *map);
 int		render(t_map *map);
 
 #endif

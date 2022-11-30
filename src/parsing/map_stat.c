@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:48:55 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 18:49:13 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 22:20:30 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ void	check_stat(t_map *map)
 	int	i;
 
 	i = 0;
-	if (!map->img[0].path || !map->img[1].path || !map->img[2].path || !map->img[3].path)
+	if (!map->img[0].path || !map->img[1].path
+		|| !map->img[2].path || !map->img[3].path)
 		parse_error(map, "Error\nMissing textures\n");
 	while (i < 3)
 	{
@@ -125,7 +126,6 @@ int	get_map_stat(t_map *map, char *line)
 		i++;
 		return (0);
 	}
-	//printf("TEXTURE %s\n", map->img[3].path);
 	check_stat(map);
 	return (1);
 }

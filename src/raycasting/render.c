@@ -1,19 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 18:27:14 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 22:48:05 by sleleu           ###   ########.fr       */
+/*   Created: 2022/11/30 22:23:47 by sleleu            #+#    #+#             */
+/*   Updated: 2022/11/30 22:51:15 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	get_color(t_map *map, int x, int y, int i)
+void	render_background(t_map *map)
 {
-	return (*(int *)(map->img[i].addr
-		+ (y * map->img[i].line_len + x * (map->img[i].bpp / 8))));
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < map->display_width)
+	{
+		y = 0;
+		while (y < map->display_height)
+		{
+			if (y < map->display_height / 2)
+				img_pix_put(map, x, y, 0x660010);
+			else
+				img_pix_put(map, x, y, 0x002000);
+			y++;
+		}
+		++x;
+	}
+}
+
+int	render(t_map *map)
+{
+	render_background(map);
+	raycasting(map);
+	mlx_put_image_to_window(map->mlx, map->mlx_win, map->img[4].mlx_img, 0, 0);
+	return (0);
 }
