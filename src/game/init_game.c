@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 19:13:38 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:57:42 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ void	ft_init_img(t_map *map)
 		&map->img[i].w, &map->img[i].h);
 		if (!map->img[i].mlx_img)
 			game_error(map, "Error\nPath texture is incorrect\n");
+		i++;
+	}
+	map->img[4].mlx_img = mlx_new_image(map->mlx, map->display_width, map->display_height);
+		if (!map->img[4].mlx_img)
+			game_error(map, "Error\nImage initialisation has failed\n");
+	i = 0;
+	while (i < 5)
+	{
+		map->img[i].addr = mlx_get_data_addr(map->img[i].mlx_img, &map->img[i].bpp,
+			&map->img[i].line_len, &map->img[i].endian);
+		// ERREUR FREE A METTRE
 		i++;
 	}
 }
@@ -94,7 +105,7 @@ int		render(t_map *map)
 {
 	render_background(map);
 	raycasting(map);
-	mlx_put_image_to_window(map->mlx, map->mlx_win, map->mlx_img, 0, 0);
+	mlx_put_image_to_window(map->mlx, map->mlx_win, map->img[4].mlx_img, 0, 0);
 	return (0);
 }
 
@@ -108,37 +119,9 @@ int	ft_init_game(t_map *map)
 	if (!map->mlx_win)
 		game_error(map, "Error\nInitialisation of window has failed\n");
 	ft_init_img(map);
-	map->mlx_img = mlx_new_image(map->mlx, map->display_width, map->display_height);
-	if (!map->mlx_img)
-		game_error(map, "Error\nErreur jtai dis\n");
-	map->img_add = mlx_get_data_addr(map->mlx_img, &map->img_bpp, &map->img_len, &map->img_endian);
-	map->img_no_add = mlx_get_data_addr(map->img[0].mlx_img,  &map->img_no_bpp, &map->img_no_len, &map->img_no_endian);
 	mlx_loop_hook(map->mlx, &render, map);
 	mlx_hook(map->mlx_win, 2, 1L << 0, key_hook, map);
 	mlx_hook(map->mlx_win, 17, 1L << 0, close_game, map);
 	mlx_loop(map->mlx);
 	return (0);
 }
-
-// int	ft_init_game(t_map *map)
-// {
-// 	t_map data;
-
-// 	data = *map;
-// 	data = ft_init_game_stat(data);
-// 	data.mlx = mlx_init();
-// 	if (!data.mlx)
-// 		game_error(&data, "Error\nInitialisation of display has failed\n");
-// 	data.mlx_win = mlx_new_window(data.mlx, data.display_width, data.display_height, "Cub3D");
-// 	if (!data.mlx_win)
-// 		game_error(&data, "Error\nInitialisation of window has failed\n");
-// 	data.img.mlx_img = mlx_new_image(data.mlx, data.display_width, data.display_height);
-// 	if (!data.img.mlx_img)
-// 		game_error(&data, "Error\nErreur jtai dis\n");
-// 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
-// 	mlx_loop_hook(data.mlx, &render, &data);
-// 	mlx_hook(data.mlx_win, 2, 1L << 0, key_hook, &data);
-// 	mlx_hook(data.mlx_win, 17, 1L << 0, close_game, &data);
-// 	mlx_loop(data.mlx);
-// 	return (0);
-// }

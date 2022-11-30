@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:34:22 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 19:03:45 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:58:39 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	destroy_image(t_map *map)
 	i = 0;
 	if (map->mlx)
 	{
-		while (i < 4)
+		while (i < 5)
 		{
 			if (map->img[i].mlx_img)
 				mlx_destroy_image(map->mlx, map->img[i].mlx_img);
@@ -30,14 +30,15 @@ void	destroy_image(t_map *map)
 
 void	free_rgb_texture(t_map *map)
 {
-	if (map->img[0].path)
-		free(map->img[0].path);
-	if (map->img[1].path)
-		free(map->img[1].path);
-	if (map->img[2].path)
-		free(map->img[2].path);
-	if (map->img[3].path)
-		free(map->img[3].path);
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (map->img[i].path)
+			free(map->img[i].path);
+		i++;
+	}
 }
 
 void	free_double_array(char **str)
@@ -45,12 +46,13 @@ void	free_double_array(char **str)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 	{
 		free(str[i]);
 		i++;
 	}
-	free(str);
+	if (str)
+		free(str);
 }
 
 int	close_game(t_map *map)
