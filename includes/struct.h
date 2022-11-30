@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 16:42:54 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 20:57:25 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,11 @@ typedef struct  s_map
 	int		img_no_len;
 
 	// colors
-	int		tex_num;
 	double	wall_x;
 	int		tex_x;
 	int		tex_y;
+	double	step;
+	double	tex_pos;
 
 	//raycasting
 	double	ray_dir_x;

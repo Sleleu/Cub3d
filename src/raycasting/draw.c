@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:34:10 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 17:57:17 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 20:59:23 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,18 @@
 
 void	img_pix_put(t_map *map, int x, int y, int color)
 {
-	char	*pixel;
-	// t_img	img;
+	char *pixel;
 
-	// img = map->img;
 	if (y < 0 || y > map->display_height - 1 || x < 0 || x > map->display_width - 1)
 		return ;
-	pixel = map->img[4].addr + (y * map->img[4].line_len + x * (map->img[4].bpp / 8));
+	pixel = (map->img[4].addr + (y * map->img[4].line_len + x * (map->img[4].bpp / 8)));
 	*(int *)pixel = color;
 }
 
-void	img_pix_put_wall(t_map *map, int x, int y, int color)
+int	get_color(t_map *map, int x, int y, int i)
 {
-	char	*pixel;
-	// t_img	img;
-
-	// img = map->img;
-	if (y < 0 || y > map->display_height - 1 || x < 0 || x > map->display_width - 1)
-		return ;
-	pixel = map->img[1].addr + (y * map->img[1].line_len + x * (map->img[1].bpp / 8));
-	*(int *)pixel = color;
-}
-
-int	get_color(t_map *map, int x, int y)
-{
-	if (y < 0 || y > map->display_height - 1 || x < 0 || x > map->display_width - 1)
-		return 0;
-	return (*(int *)(map->img[1].addr + 
-			(y * map->img[1].line_len + x * (map->img[1].bpp / 8))));
+	return (*(int *)(map->img[i].addr + 
+			(y * map->img[i].line_len + x * (map->img[i].bpp / 8))));
 }
 
 void	define_column(t_map *map, int *line_height, int *start, int *end)
@@ -55,18 +39,20 @@ void	define_column(t_map *map, int *line_height, int *start, int *end)
 		*end = map->display_height - 1;
 }
 
-void	define_texture(t_map *map)
+void	define_texture(t_map *map, int start, int line_height)
 {
-	map->tex_num = map->map_tab[map->map_y][map->map_x] - 1;
 	if (map->wall_side == 0)
 		map->wall_x = map->pos_y + map->perpwalldist * map->ray_dir_y;
 	else
 		map->wall_x = map->pos_x + map->perpwalldist * map->ray_dir_x;
-	map->tex_x = map->wall_x * 128; // <-- text_width
+	map->wall_x -= floor(map->wall_x);
+	map->tex_x = map->wall_x * 128;
 	if (map->wall_side == 0 && map->ray_dir_x > 0)
 		map->tex_x = 128 - map->tex_x - 1;
 	if (map->wall_side == 1 && map->ray_dir_y < 0)
 		map->tex_x = 128 - map->tex_x - 1;
+	map->step = 1.0 * 128 / line_height;
+	map->tex_pos = (start - map->display_height / 2 + line_height / 2) * map->step;
 }
 
 void	draw_column(t_map *map, int x)
@@ -76,22 +62,22 @@ void	draw_column(t_map *map, int x)
 	int line_height;
 	int color;
 
-	map->tex_y++;
-	if (map->tex_y == map->display_height)
-		map->tex_y = 0;
 	define_column(map, &line_height, &start, &end);
-	define_texture(map);
+	define_texture(map, start, line_height);
 	while (start < end)
 	{
-		color = get_color(map, map->img[1].w, map->img[1].h);
+		map->tex_y = (int)map->tex_pos & (128 - 1);
+		map->tex_pos += map->step;
 		if (map->wall_side == 1)
 		{
-			//mlx_put_image_to_window(map->mlx, map->mlx_win, map->img_no, x, start);
-			img_pix_put(map, x, start, 200200200);
-			//img_pix_put_wall(map, map->img[1].w, map->img[1].h, color);
+			color = get_color(map, map->tex_x, map->tex_y, 0);
+			img_pix_put(map, x, start, color);
 		}
 		else
-			img_pix_put(map, x, start, 100100100);
+		{
+			color = get_color(map, map->tex_x, map->tex_y, 0);
+			img_pix_put(map, x, start, color >> 1 & 8355711);
+		}
 		start++;
 	}
 }

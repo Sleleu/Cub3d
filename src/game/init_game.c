@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 17:57:42 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 20:38:01 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	ft_init_game_stat(t_map *map)
 {
 	map->speed = 0.07;
     map->rot_speed = 0.06;
-	map->display_width = 1940;
-	map->display_height = 1280;
+	map->display_width = 1280;
+	map->display_height = 1024;
 	if (map->direction == 'N')
 	{
 		map->plane_x = 0.66;
@@ -65,7 +65,7 @@ void	ft_init_game_stat(t_map *map)
 	}
 	if (map->direction == 'S')
 	{
-		map->plane_x = -0.66;
+		map->plane_x = -0.60;
 		map->plane_y = 0;
 	}
 	if (map->direction == 'W')
