@@ -6,14 +6,28 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:36:14 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 16:55:10 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/01 00:39:46 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+void	actualise_minimap(t_map *map, int old_x, int old_y)
+{
+	draw_case(map, (int)map->pos_x * 7, (int)map->pos_y * 7, 0xEEEE20);
+	if ((int)map->pos_x != old_x)
+		draw_case(map, old_x * 7, old_y * 7, 0x660000);
+	if ((int)map->pos_y != old_y)
+		draw_case(map, old_x * 7, old_y * 7, 0x660000);
+}
+
 void	move(t_map *map, double next_x, double next_y, char sign)
 {
+	int old_x;
+	int	old_y;
+
+	old_x = (int)map->pos_x;
+	old_y = (int)map->pos_y;
 	if (sign == '+')
 	{
 		if (map->map_tab[(int)map->pos_y][(int)(map->pos_x + next_x)] != '1')
@@ -28,6 +42,8 @@ void	move(t_map *map, double next_x, double next_y, char sign)
 		if (map->map_tab[(int)(map->pos_y - next_y)][(int)map->pos_x] != '1')
 			map->pos_y -= next_y;
 	}
+	if (old_x != map->map_x || old_y != map->map_y)
+		actualise_minimap(map, old_x, old_y);
 }
 
 void	rotate(t_map *map, double rot_spd)

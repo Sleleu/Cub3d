@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:51:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 22:32:54 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 23:47:49 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct  s_map
     void    *mlx;
     void    *mlx_win;
 	t_img	img[5];
+	t_img	minimap;
 	int		display_width;
 	int		display_height;
 

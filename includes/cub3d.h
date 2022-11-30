@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 22:52:56 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/11/30 23:34:17 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,10 @@ int		render(t_map *map);
 
 void	render_background(t_map *map);
 int		render(t_map *map);
+
+/* MINIMAP */
+
+void	draw_case(t_map *map, int x, int y, int color);
+void	draw_minimap(t_map *map);
 
 #endif

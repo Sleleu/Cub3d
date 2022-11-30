@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:34:10 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 22:50:53 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/01 00:07:19 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,5 @@ void	draw_column(t_map *map, int x)
 			draw(map, x, WEST);
 		map->start++;
 	}
+	//draw_minimap(map);
 }

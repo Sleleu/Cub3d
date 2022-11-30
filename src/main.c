@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:08:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 19:06:00 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/01 00:44:40 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ void	bzero_struct(t_map *map)
 	map->rgb_sky[2] = -1;
 	map->line = NULL;
 	map->map_line = NULL;
-	while (i < 4)
+	while (i < 5)
 	{
 		map->img[i].mlx_img = NULL;
 		map->img[i].path = NULL;
 		i++;
 	}
+	map->minimap.mlx_img = NULL;
 }
 
 int	main(int ac, char **av)

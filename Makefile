@@ -6,7 +6,7 @@
 #    By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 19:08:41 by sleleu            #+#    #+#              #
-#    Updated: 2022/11/30 22:25:04 by sleleu           ###   ########.fr        #
+#    Updated: 2022/11/30 23:07:50 by sleleu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC =	src/main.c \
 		src/raycasting/raycasting.c \
 		src/raycasting/draw.c \
 		src/raycasting/render.c \
+		src/raycasting/minimap.c \
 
 OBJ = $(SRC:.c=.o)
 
