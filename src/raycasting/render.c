@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 22:23:47 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/30 23:55:55 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/01 00:57:54 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	render(t_map *map)
 	render_background(map);
 	raycasting(map);
 	mlx_put_image_to_window(map->mlx, map->mlx_win, map->img[4].mlx_img, 0, 0);
-	mlx_put_image_to_window(map->mlx, map->mlx_win, map->minimap.mlx_img, 10, 10);
+	mlx_put_image_to_window(map->mlx, map->mlx_win,
+		map->minimap.mlx_img, 10, 10);
 	return (0);
 }

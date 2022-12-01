@@ -6,24 +6,15 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:36:14 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/01 00:39:46 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/01 00:56:56 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	actualise_minimap(t_map *map, int old_x, int old_y)
-{
-	draw_case(map, (int)map->pos_x * 7, (int)map->pos_y * 7, 0xEEEE20);
-	if ((int)map->pos_x != old_x)
-		draw_case(map, old_x * 7, old_y * 7, 0x660000);
-	if ((int)map->pos_y != old_y)
-		draw_case(map, old_x * 7, old_y * 7, 0x660000);
-}
-
 void	move(t_map *map, double next_x, double next_y, char sign)
 {
-	int old_x;
+	int	old_x;
 	int	old_y;
 
 	old_x = (int)map->pos_x;

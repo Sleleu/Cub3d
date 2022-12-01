@@ -6,11 +6,46 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 23:06:46 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/01 00:08:01 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/01 00:58:58 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	draw_minimap(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map->map_tab[i])
+	{
+		j = 0;
+		while (map->map_tab[i][j])
+		{
+			if (map->map_tab[i][j] == '1')
+				draw_case(map, j * 7, i * 7, 0x000000);
+			else if (map->map_tab[i][j] == '0')
+				draw_case(map, j * 7, i * 7, 0x660000);
+			else if (is_valid_char(map->map_tab[i][j], "NSEW"))
+				draw_case(map, j * 7, i * 7, 0xEEEE20);
+			else
+				draw_case(map, j * 7, i * 7, 0x050505);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	actualise_minimap(t_map *map, int old_x, int old_y)
+{
+	draw_case(map, (int)map->pos_x * 7, (int)map->pos_y * 7, 0xEEEE20);
+	if ((int)map->pos_x != old_x)
+		draw_case(map, old_x * 7, old_y * 7, 0x660000);
+	if ((int)map->pos_y != old_y)
+		draw_case(map, old_x * 7, old_y * 7, 0x660000);
+}
 
 void	minimap_pix_put(t_map *map, int x, int y, int color)
 {
@@ -26,9 +61,11 @@ void	minimap_pix_put(t_map *map, int x, int y, int color)
 
 void	draw_case(t_map *map, int x, int y, int color)
 {
-	int i = 0;
-	int j = 0;
+	int	i;
+	int	j;
 
+	i = 0;
+	j = 0;
 	while (i < 7)
 	{
 		j = 0;
@@ -39,21 +76,4 @@ void	draw_case(t_map *map, int x, int y, int color)
 		}
 		i++;
 	}
-}
-
-void	draw_minimap(t_map *map)
-{
-	// for (int i = 0; map->map_tab[i]; i++)
-	// {
-	// 	for (int j = 0; map->map_tab[i][j]; j++)
-	// 	{
-	// 		if (map->map_tab[i][j] == '1')
-	// 			draw_case(map, j * 10, i * 10, 200200200);
-	// 		else if (map->map_tab[i][j] == '0')
-	// 			draw_case(map, j * 5, i * 5, 100100100);
-			
-	// 	}
-	// }
-	(void)map;
-	//mlx_put_image_to_window(map->mlx, map->mlx_win, map->minimap.mlx_img, 10, 10);
 }
