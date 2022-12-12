@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/01 00:55:30 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/12 19:53:17 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ int		render(t_map *map);
 
 /* RENDER */
 
+int		create_trgb(int t, int r, int g, int b);
 void	render_background(t_map *map);
 int		render(t_map *map);
 

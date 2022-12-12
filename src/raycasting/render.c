@@ -6,11 +6,16 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 22:23:47 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/01 00:57:54 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/12 19:55:46 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 
 void	render_background(t_map *map)
 {
@@ -24,9 +29,11 @@ void	render_background(t_map *map)
 		while (y < map->display_height)
 		{
 			if (y < map->display_height / 2)
-				img_pix_put(map, x, y, 0x660010);
+				img_pix_put(map, x, y, create_trgb(0, map->rgb_sky[0],
+						map->rgb_sky[1], map->rgb_sky[2]));
 			else
-				img_pix_put(map, x, y, 0x002000);
+				img_pix_put(map, x, y, create_trgb(0, map->rgb_floor[0],
+						map->rgb_floor[1], map->rgb_floor[2]));
 			y++;
 		}
 		++x;
