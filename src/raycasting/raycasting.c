@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 18:40:00 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/01 00:35:54 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/15 15:06:57 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,5 @@ void	raycasting(t_map *map)
 			map->perpwalldist = ((map->side_dist_y - map->delta_dist_y));
 		draw_column(map, x);
 		x++;
-	}	
+	}
 }

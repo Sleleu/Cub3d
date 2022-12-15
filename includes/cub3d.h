@@ -6,23 +6,23 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/12 19:53:17 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/15 15:06:25 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stddef.h>
-#include <mlx.h>
-#include <math.h>
-#include <limits.h>
-#include "struct.h"
-#include "../libft/libft.h"
-
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stddef.h>
+# include <mlx.h>
+# include <math.h>
+# include <limits.h>
+# include "struct.h"
+# include "../libft/libft.h"
 
 # define KEY_ESC		65307
 # define KEY_W			119
@@ -32,10 +32,10 @@
 
 # define KEY_UP			65362
 # define KEY_DOWN		65364
-# define KEY_LEFT		65361
-# define KEY_RIGHT		65363
+# define KEY_L			65361
+# define KEY_R			65363
 
-enum	direction
+enum	e_direction
 {
 	NORTH = 0,
 	SOUTH = 1,
@@ -43,14 +43,13 @@ enum	direction
 	WEST = 3
 };
 
-
 /* ********************************************************** */
 /*                           MAIN                             */
 /* ********************************************************** */
 
 /* MAIN */
 
-void    bzero_struct(t_map *map);
+void	bzero_struct(t_map *map);
 int		ft_test_file(char *argv);
 
 /* FREE_FUNCTIONS */
@@ -66,9 +65,9 @@ int		close_game(t_map *map);
 
 /* PARSE */
 
-void    parse_error(t_map *map, char *message);
-void    ft_read_map(int fd, t_map *map);
-int     ft_parse_map(t_map *map, int fd);
+void	parse_error(t_map *map, char *message);
+void	ft_read_map(int fd, t_map *map);
+int		ft_parse_map(t_map *map, int fd);
 
 /* UTILS */
 
@@ -87,8 +86,8 @@ int		ft_wall_error(t_map *map);
 
 /* MAP_STAT */
 
-void    assign_player_pos(t_map *map, char direction, int i, int j);
-void    set_size_data(t_map *map, char **array, int i, int j);
+void	assign_player_pos(t_map *map, char direction, int i, int j);
+void	set_size_data(t_map *map, char **array, int i, int j);
 int		get_map_stat(t_map *map, char *line);
 
 /* PARSE_RGB_TEXTURE */
@@ -115,8 +114,9 @@ int		ft_init_game(t_map *map);
 
 /* MOVES */
 
-void    move(t_map *map, double next_x, double next_y, char sign);
-void    rotate(t_map *map, double rot_spd);
+void	move(t_map *map, double next_x, double next_y, char sign);
+void	rotate(t_map *map, double rot_spd);
+void	rotate_east_west(t_map *map, double rot_spd);
 
 /* ********************************************************** */
 /*                           RAYCASTING                       */

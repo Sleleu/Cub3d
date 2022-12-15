@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:42:27 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/01 00:23:07 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/15 15:06:34 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int	key_hook(int keycode, t_map *map)
 		move(map, map->plane_x * map->speed, map->plane_y * map->speed, '-');
 	else if (keycode == KEY_D)
 		move(map, map->plane_x * map->speed, map->plane_y * map->speed, '+');
-	else if (keycode == KEY_LEFT)
+	else if ((keycode == KEY_L && (map->p_dir == 'N' || map->p_dir == 'S'))
+		|| (keycode == KEY_R && (map->p_dir == 'E' || map->p_dir == 'W')))
 		rotate(map, -map->rot_speed);
-	else if (keycode == KEY_RIGHT)
+	else if ((keycode == KEY_L && (map->p_dir == 'E' || map->p_dir == 'W'))
+		|| (keycode == KEY_R && (map->p_dir == 'N' || map->p_dir == 'S')))
 		rotate(map, map->rot_speed);
 	return (0);
 }
