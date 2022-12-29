@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:50:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/15 15:06:25 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/15 18:00:57 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define KEY_A			97
 # define KEY_S			115
 # define KEY_D			100
+# define SPACE			32
 
 # define KEY_UP			65362
 # define KEY_DOWN		65364
@@ -104,6 +105,8 @@ void	get_rgb(t_map *map, int *rgb, char **split_line);
 /* KEY_EVENTS */
 
 int		key_hook(int keycode, t_map *map);
+int		mouse_rotate_hook(int x, int y, t_map *map);
+int		mouse_hook(int keycode, int x, int y, t_map *map);
 
 /* INIT_GAME */
 

@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:42:27 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/15 15:06:34 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/29 18:02:54 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,15 @@ int	key_hook(int keycode, t_map *map)
 	else if ((keycode == KEY_L && (map->p_dir == 'E' || map->p_dir == 'W'))
 		|| (keycode == KEY_R && (map->p_dir == 'N' || map->p_dir == 'S')))
 		rotate(map, map->rot_speed);
+	return (0);
+}
+
+int	mouse_rotate_hook(int x, int y, t_map *map)
+{
+	(void)y;
+	if (x > (int)(map->display_width / 1.2))
+		rotate(map, map->rot_speed / 3);
+	else if (x < map->display_width / 6)
+		rotate(map, -map->rot_speed / 3);
 	return (0);
 }

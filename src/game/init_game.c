@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:53:51 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/15 15:04:59 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/29 18:01:22 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int	ft_init_game(t_map *map)
 	init_minimap(map);
 	mlx_loop_hook(map->mlx, &render, map);
 	mlx_hook(map->mlx_win, 2, 1L << 0, key_hook, map);
+	mlx_hook(map->mlx_win, 6, 1L << 6, mouse_rotate_hook, map);
 	mlx_hook(map->mlx_win, 17, 1L << 0, close_game, map);
 	mlx_loop(map->mlx);
 	return (0);
