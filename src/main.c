@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:08:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/29 17:57:07 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/30 15:19:38 by rvrignon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	ft_test_extension(char *argv)
+{
+	int	i;
+	int	j;
+
+	i = ft_strlen(argv);
+	j = 0;
+	i -= 4;
+	while (argv[i] != '\0')
+	{
+		if (j == 0 && argv[i] != '.')
+			return (0);
+		if (j == 1 && argv[i] != 'c')
+			return (0);
+		if (j == 2 && argv[i] != 'u')
+			return (0);
+		if (j == 3 && argv[i] != 'b')
+			return (0);
+		i++;
+		j++;
+	}
+	return (1);
+}
 
 int	ft_test_file(char *argv)
 {
@@ -18,6 +42,11 @@ int	ft_test_file(char *argv)
 	int		result;
 	char	test[1];
 
+	if (!ft_test_extension(argv))
+	{
+		ft_printf("Error\nBad extension\n");
+		return (0);
+	}
 	fd = open(argv, O_RDONLY);
 	result = read(fd, test, 1);
 	if (result <= 0)

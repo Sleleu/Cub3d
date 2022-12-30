@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rgb_texture.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 18:15:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/29 19:06:19 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/12/30 15:21:38 by rvrignon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	parse_rgb_line(char *line)
 	{
 		if (line[i] == ',')
 			comma++;
+		if (line[i] == ',' && line[i + 1] && line[i + 1] == ',')
+			return (0);
 		else if ((!ft_isdigit(line[i])) && line[i] != ',')
 			return (0);
 		i++;
