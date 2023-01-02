@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:34:10 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/01 00:58:06 by sleleu           ###   ########.fr       */
+/*   Updated: 2023/01/02 17:14:01 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ void	draw_column(t_map *map, int x)
 		map->tex_y = (int)map->tex_pos & (128 - 1);
 		map->tex_pos += map->step;
 		if (map->wall_side == 1 && map->ray_dir_y < 0)
-			draw(map, x, NORTH);
-		else if (map->wall_side == 1 && map->ray_dir_y > 0)
 			draw(map, x, SOUTH);
+		else if (map->wall_side == 1 && map->ray_dir_y > 0)
+			draw(map, x, NORTH);
 		else if (map->wall_side == 0 && map->ray_dir_x < 0)
-			draw(map, x, EAST);
-		else if (map->wall_side == 0 && map->ray_dir_x > 0)
 			draw(map, x, WEST);
+		else if (map->wall_side == 0 && map->ray_dir_x > 0)
+			draw(map, x, EAST);
 		map->start++;
 	}
 }
