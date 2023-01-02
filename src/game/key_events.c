@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:42:27 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/30 15:24:27 by rvrignon         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:02:35 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,19 @@ int	key_hook(int keycode, t_map *map)
 int	mouse_rotate_hook(int x, int y, t_map *map)
 {
 	(void)y;
-	if (x > (int)(map->display_width / 1.2))
-		rotate(map, map->rot_speed / 3);
-	else if (x < map->display_width / 6)
-		rotate(map, -map->rot_speed / 3);
+	if (map->p_dir == 'N' || map->p_dir == 'S')
+	{
+		if (x > (int)(map->display_width / 1.2))
+			rotate(map, map->rot_speed / 3);
+		else if (x < map->display_width / 6)
+			rotate(map, -map->rot_speed / 3);
+	}
+	else
+	{
+		if (x > (int)(map->display_width / 1.2))
+			rotate(map, -map->rot_speed / 3);
+		else if (x < map->display_width / 6)
+			rotate(map, map->rot_speed / 3);
+	}
 	return (0);
 }
