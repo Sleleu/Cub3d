@@ -45,7 +45,18 @@ C 225,30,0
 11111111 1111111 111111111111
 ```
 
-Here is an example of the graphic rendering of the project, using the textures of the original doom game, as well as a minimap and a RGB color set :
+## Graphical rendering
+
+### 3D perspective with raycasting
+
+The simulation of the 3D perspective of the raycasting is operated by size of the central pixel columns, more or less long depending on the distance between the player and the wall. This distance is measured by rays crossing the 2D map, and checking if a wall is encountered. These measurements use a **digital differential analysis algorithm** to check only the useful areas, in this case the intersections between the cells of the map. This measurement is performed **as many times as there are x-pixels** on the user's screen, allowing a resource saving without having to calculate the entire screen. Here is an example of the rendering of this project _(commit ee1de0ef385d78e352bfb22914ec44ae6142da0f)_ in its state before the addition of textures :
+
+![Screenshot from 2023-01-30 16-12-01](https://user-images.githubusercontent.com/93100775/215516735-f8ce45e1-cb8a-48fb-bb8f-835a197ff825.png)
+
+
+### Final rendering
+
+Here is an example of the final graphic rendering of the project, using the textures of the original doom game, as well as a minimap and a RGB color set :
 
 ![Screenshot from 2023-01-30 16-00-04](https://user-images.githubusercontent.com/93100775/215512948-b1079c1e-c73d-4fb2-80c4-3c19b7d2153d.png)
 
@@ -68,9 +79,25 @@ git clone https://github.com/42Paris/minilibx-linux.git mlx_linux
 make
 ```
 
+## Usage
+
+When launching the program, it is necessary to use as argument a map located in the /maps folder
+
+```shell
+./cub3D maps/map1.cub 
+```
+
+### controls
+
+- `WASD` to move
+- `->`, `<-` or move the mouse on either side of the screen to execute a rotation
+- `ESC` to quit the program
+
+
 ## usefull links
 
 - https://lodev.org/cgtutor/raycasting.html
+- https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
 - https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/
 - https://github.com/vinibiavatti1/RayCastingTutorial/wiki
 - https://github.com/qst0/ft_libgfx
