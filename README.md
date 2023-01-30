@@ -45,6 +45,11 @@ C 225,30,0
 11111111 1111111 111111111111
 ```
 
+Here is an example of the graphic rendering of the project, using the textures of the original doom game, as well as a minimap and a RGB color set :
+
+![Screenshot from 2023-01-30 16-00-04](https://user-images.githubusercontent.com/93100775/215512948-b1079c1e-c73d-4fb2-80c4-3c19b7d2153d.png)
+
+
 ## Installation
 
 ### Clone the repository
