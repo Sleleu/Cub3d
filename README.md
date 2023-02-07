@@ -45,6 +45,20 @@ C 225,30,0
 11111111 1111111 111111111111
 ```
 
+## Parsing methodology
+
+According to the constraints imposed by the subject, the parsing was carried out in the following way :
+
+![parsing_check](https://user-images.githubusercontent.com/93100775/217233450-89ad0f51-8bbe-48e6-8e9e-41b7f6090c3f.png)
+
+- **Take data** : first pass on the .cub file, for example with a _static variable_, to get the 6 first required data. RGB colors and paths of the images can be placed in an array, and check the validity of each path and colors. In this implementation, the order of declaration of textures or colors does not matter, but must be declared correctly and without gaps or duplication.
+
+- **Turn map into rectangle** : Once the data is retrieved, check the _longest line_ of the map, and enlarge the size of each shorter line with spaces to form a rectangular. This will facilitate the vertical check of the map.
+
+- **Horizontal check** : check for each line if the characters are valid characters `"01NSEW "`. In case of space, check if the character preceding the space is a `1`, and if the next character following the **space string** is a `1` or the end of line. So it is possible to have space holes in a map provided that this hole is surrounded by walls.
+
+- **Vertical check** : The vertical check follows the same logic, constant verification that a wall is present before and after a space string. The combination of the vertical and horizontal check will allow to create any type of map, rounded or with islands, while checking that there is no opening, in example a `0` not surrounded by `1`.
+
 ## Graphical rendering
 
 ### 3D perspective with raycasting
