@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvrignon <rvrignon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:08:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/12/30 15:19:38 by rvrignon         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:54:18 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	bzero_struct(t_map *map)
 
 	i = 0;
 	map->map_tab = NULL;
-	map->map_data = NULL;
 	map->width_map = 0;
 	map->height_map = 0;
 	map->rgb_floor[0] = -1;

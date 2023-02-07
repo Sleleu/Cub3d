@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:13:33 by sleleu            #+#    #+#             */
-/*   Updated: 2022/11/26 20:08:24 by sleleu           ###   ########.fr       */
+/*   Updated: 2023/02/07 11:54:22 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	parse_error(t_map *map, char *message)
 	ft_printf(message);
 	if (map->map_tab)
 		free_double_array(map->map_tab);
-	if (map->map_data)
-		free_double_array(map->map_data);
 	if (map->line)
 		free(map->line);
 	if (map->map_line)
